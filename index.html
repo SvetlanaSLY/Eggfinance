@@ -1,606 +1,220 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EGG Finance - Built Around Your Financial Company</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EGG Finance - Premium FinTech</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#e0638c',
+                        'primary-dark': '#c44d74',
+                        'primary-light': '#f48fb1',
+                        dark: '#0a0a0b',
+                        'dark-surface': '#141416',
+                        'dark-border': '#232326'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    animation: {
+                        'slow-spin': 'spin 12s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
         }
-
-        :root {
-            --primary-color: #e0638c;
-            --primary-dark: #c44d74;
-            --primary-light: #f48fb1;
-            --text-dark: #1a1a2e;
-            --text-gray: #6b7280;
-            --text-light: #9ca3af;
-            --bg-white: #ffffff;
-            --bg-light: #f9fafb;
-            --border-color: #e5e7eb;
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
+    </script>
+<style>
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
+            background-color: #0a0a0b;
+            color: #ffffff;
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
-            z-index: 1000;
-            transition: var(--transition);
+        .glass-nav {
+            background: rgba(10, 10, 11, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .nav-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 1.25rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .hero-gradient {
+            background: radial-gradient(circle at 50% -20%, rgba(224, 99, 140, 0.15) 0%, rgba(10, 10, 11, 0) 50%);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            text-decoration: none;
-            transition: var(--transition);
+        .card-glass {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(8px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 800;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.3);
+        .card-glass:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(224, 99, 140, 0.3);
+            transform: translateY(-4px);
         }
 
-        .logo:hover {
-            transform: translateY(-2px);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .nav-links a.active {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
-        .nav-links a.active::after {
-            width: 100%;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .globe-icon {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            color: var(--text-gray);
-            transition: var(--transition);
-        }
-
-        .globe-icon:hover {
-            color: var(--primary-color);
-            transform: rotate(15deg);
-        }
-
-        .btn {
-            padding: 0.75rem 2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(224, 99, 140, 0.5);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary-color);
-            border: 2px solid var(--primary-color);
-        }
-
-        .btn-secondary:hover {
-            background: var(--primary-color);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .btn-large {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            margin-top: 80px;
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        .btn-premium {
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .hero::before {
+        .btn-premium::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.4;
-        }
-
-        .hero-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-content {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(224, 99, 140, 0.1);
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(224, 99, 140, 0.2);
-        }
-
-        .hero-badge::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--primary-color);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-            max-width: 540px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .hero-image {
-            position: relative;
-            animation: fadeIn 1s ease-out 0.3s both;
-        }
-
-        .hero-image-wrapper {
-            position: relative;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: var(--shadow-xl);
-            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-            transition: var(--transition);
-        }
-
-        .hero-image-wrapper:hover {
-            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
-        }
-
-        .hero-image img {
+            left: -100%;
             width: 100%;
-            height: auto;
-            display: block;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
         }
 
-        .hero-image-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 120%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(224, 99, 140, 0.3) 0%, transparent 70%);
-            z-index: -1;
-            animation: glow 3s ease-in-out infinite;
+        .btn-premium:hover::before {
+            left: 100%;
         }
 
-        /* Stats Section */
-        .stats {
-            padding: 5rem 2rem;
-            background: var(--bg-white);
+        .text-glow {
+            text-shadow: 0 0 20px rgba(224, 99, 140, 0.3);
         }
 
-        .stats-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+        .grid-pattern {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
 
-        .stat-card {
-            text-align: center;
-            padding: 2.5rem 2rem;
-            border-radius: 24px;
-            background: var(--bg-white);
-            border: 2px solid var(--border-color);
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
         }
 
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--primary-color);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .stat-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 1rem;
-            color: var(--text-gray);
-            font-weight: 500;
-            line-height: 1.5;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.5;
-            }
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .stats-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .nav-links {
-                display: none;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .hero {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero-description {
-                font-size: 1rem;
-            }
-
-            .stats-container {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-card {
-                padding: 2rem 1.5rem;
-            }
-
-            .stat-number {
-                font-size: 2.5rem;
-            }
-        }
-
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--bg-light);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 5px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--primary-dark);
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
         }
     </style>
 </head>
-<body>
-
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <div class="logo-icon">E</div>
-                <span>EGG finance™</span>
-            </a>
-            
-            <ul class="nav-links">
-                <li><a href="#" class="active">Home</a></li>
-                <li><a href="#">Features</a></li>
-                <li><a href="#">Editions</a></li>
-                <li><a href="#">Success Stories</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
-
-            <div class="nav-actions">
-                <svg class="globe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <a href="#" class="btn btn-primary">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    Trusted by 50+ financial institutions
+<body class="font-sans antialiased">
+<!-- Grid Background -->
+<div class="fixed inset-0 grid-pattern pointer-events-none z-0"></div>
+<!-- Navigation -->
+<nav class="fixed top-0 w-full z-50 glass-nav">
+<div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center font-bold text-xl shadow-[0_0_20px_rgba(224,99,140,0.4)] group-hover:scale-110 transition-transform">E</div>
+<span class="text-xl font-bold tracking-tight">EGG finance<span class="text-primary">™</span></span>
+</a>
+<ul class="hidden md:flex items-center gap-10">
+<li><a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a></li>
+<li><a class="text-sm font-medium text-white/60 hover:text-white transition-colors" href="#">Features</a></li>
+<li><a class="text-sm font-medium text-white/60 hover:text-white transition-colors" href="#">Editions</a></li>
+<li><a class="text-sm font-medium text-white/60 hover:text-white transition-colors" href="#">Success Stories</a></li>
+</ul>
+<div class="flex items-center gap-6">
+<button class="text-white/60 hover:text-white transition-colors">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</button>
+<a class="bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-full text-sm font-bold btn-premium shadow-[0_0_20px_rgba(224,99,140,0.2)]" href="#">Contact Us</a>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<main class="relative pt-32 pb-20 px-6 hero-gradient overflow-hidden">
+<!-- Abstract Shapes -->
+<div class="absolute top-1/4 -right-20 w-96 h-96 bg-primary/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+<div class="absolute -bottom-20 -left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-[120px] animate-pulse-slow"></div>
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+<div class="space-y-8">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-primary-light uppercase tracking-widest">
+<span class="w-2 h-2 rounded-full bg-primary animate-ping"></span>
+                    Trusted by 50+ Global Institutions
                 </div>
-                <h1>
-                    The platform that is built around your <span>financial company</span>
-                </h1>
-                <p class="hero-description">
-                    A fully customizable platform to support all credit organizations. EGG finance won't transform your processes, but it will make them faster and more automated.
+<h1 class="text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                    Infrastructure for the <span class="bg-gradient-to-r from-primary to-primary-light bg-clip-text text-transparent">Digital Frontier</span>
+</h1>
+<p class="text-lg text-white/60 leading-relaxed max-w-xl">
+                    Fully customizable core infrastructure engineered for credit organizations. EGG finance automates complex workflows with high-precision automation.
                 </p>
-                <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary btn-large">
-                        Request a Demo
-                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                        </svg>
+<div class="flex flex-wrap gap-4 pt-4">
+<a class="px-8 py-4 bg-primary hover:bg-primary-dark text-white rounded-2xl font-bold btn-premium shadow-xl flex items-center gap-2" href="#">
+                        Request Ecosystem Demo
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path d="M13 7l5 5m0 0l-5 5m5-5H6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+<a class="px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 text-white rounded-2xl font-bold transition-all backdrop-blur-sm" href="#">
+                        View Whitepaper
                     </a>
-                    <a href="#" class="btn btn-secondary btn-large">Contact</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-image-glow"></div>
-                <div class="hero-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop" alt="Financial Platform Dashboard">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number">17+</div>
-                <div class="stat-label">Years of<br>Experience</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">50+</div>
-                <div class="stat-label">Satisfied<br>Customers</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">70+</div>
-                <div class="stat-label">Employees</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">20+</div>
-                <div class="stat-label">Customers<br>Worldwide</div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 50) {
-                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-        });
-
-        // Animate stats on scroll
-        const observerOptions = {
-            threshold: 0.5
-        };
-
+</div>
+</div>
+<div class="relative">
+<div class="absolute inset-0 bg-primary/20 blur-[100px] rounded-full"></div>
+<div class="relative card-glass p-4 rounded-[2rem] border-white/10 animate-float">
+<img alt="Dashboard Preview" class="rounded-3xl w-full shadow-2xl" src="https://www.gstatic.com/labs-code/stitch/stitch-placeholder-300x300.svg"/>
+<!-- Floating Data Points -->
+<div class="absolute -bottom-6 -left-6 card-glass p-4 rounded-2xl border-white/20 animate-bounce shadow-2xl" style="animation-duration: 4s">
+<div class="text-xs text-white/50 mb-1">Total Assets Locked</div>
+<div class="text-xl font-bold text-white">$4.2B+</div>
+</div>
+<div class="absolute -top-6 -right-6 card-glass p-4 rounded-2xl border-white/20 animate-bounce shadow-2xl" style="animation-duration: 5s">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-green-500 rounded-full"></div>
+<span class="text-xs font-bold uppercase tracking-wider">System Operational</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Stats Section -->
+<section class="py-24 px-6 bg-dark">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="card-glass p-8 rounded-3xl text-center group">
+<div class="text-4xl font-extrabold text-white mb-2 group-hover:text-primary transition-colors">17+</div>
+<div class="text-sm font-medium text-white/40 uppercase tracking-widest">Years Expertise</div>
+</div>
+<div class="card-glass p-8 rounded-3xl text-center group">
+<div class="text-4xl font-extrabold text-white mb-2 group-hover:text-primary transition-colors">50+</div>
+<div class="text-sm font-medium text-white/40 uppercase tracking-widest">Enterprise Clients</div>
+</div>
+<div class="card-glass p-8 rounded-3xl text-center group">
+<div class="text-4xl font-extrabold text-white mb-2 group-hover:text-primary transition-colors">70+</div>
+<div class="text-sm font-medium text-white/40 uppercase tracking-widest">Specialized Staff</div>
+</div>
+<div class="card-glass p-8 rounded-3xl text-center group">
+<div class="text-4xl font-extrabold text-white mb-2 group-hover:text-primary transition-colors">20+</div>
+<div class="text-sm font-medium text-white/40 uppercase tracking-widest">Market Jurisdictions</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Simple -->
+<footer class="py-12 border-t border-white/5 text-center text-white/20 text-xs tracking-widest uppercase">
+        © 2024 EGG Finance Ecosystem. All Rights Reserved.
+    </footer>
+<script>
+        // Smooth reveal on scroll
+        const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
                 }
             });
         }, observerOptions);
 
-        document.querySelectorAll('.stat-card').forEach((card, index) => {
-            card.style.opacity = '0';
-            card.style.animationDelay = `${index * 0.1}s`;
-            observer.observe(card);
+        document.querySelectorAll('.card-glass').forEach(el => {
+            el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(el);
         });
     </script>
 </body>
