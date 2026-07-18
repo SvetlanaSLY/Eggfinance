@@ -1,40 +1,610 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGG Finance - Built Around Your Financial Company</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>EGG Finance - Premium FinTech</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#e0638c',
-                        'primary-dark': '#c44d74',
-                        'primary-light': '#f48fb1',
-                        dark: '#0a0a0b',
-                        'dark-surface': '#141416',
-                        'dark-border': '#232326'
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                    },
-                    animation: {
-                        'slow-spin': 'spin 12s linear infinite',
-                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    }
-                }
+        :root {
+            --primary-color: #e0638c;
+            --primary-dark: #c44d74;
+            --primary-light: #f48fb1;
+            --text-dark: #1a1a2e;
+            --text-gray: #6b7280;
+            --text-light: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.3);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .globe-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+
+        .globe-icon:hover {
+            color: var(--primary-color);
+            transform: rotate(15deg);
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(224, 99, 140, 0.5);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.4;
+        }
+
+        .hero-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(224, 99, 140, 0.1);
+            color: var(--primary-color);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(224, 99, 140, 0.2);
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 540px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            position: relative;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+            transition: var(--transition);
+        }
+
+        .hero-image-wrapper:hover {
+            transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .hero-image-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%;
+            height: 120%;
+            background: radial-gradient(circle, rgba(224, 99, 140, 0.3) 0%, transparent 70%);
+            z-index: -1;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 5rem 2rem;
+            background: var(--bg-white);
+        }
+
+        .stats-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            background: var(--bg-white);
+            border: 2px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .stat-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">E</div>
+                <span>EGG finance™</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Editions</a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <svg class="globe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <a href="#" class="btn btn-primary">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    Trusted by 50+ financial institutions
+                </div>
+                <h1>
+                    The platform that is built around your <span>financial company</span>
+                </h1>
+                <p class="hero-description">
+                    A fully customizable platform to support all credit organizations. EGG finance won't transform your processes, but it will make them faster and more automated.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary btn-large">
+                        Request a Demo
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="btn btn-secondary btn-large">Contact</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-image-glow"></div>
+                <div class="hero-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&h=600&fit=crop" alt="Financial Platform Dashboard">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">17+</div>
+                <div class="stat-label">Years of<br>Experience</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Satisfied<br>Customers</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">70+</div>
+                <div class="stat-label">Employees</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Customers<br>Worldwide</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Animate stats on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.animationDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
     </script>
-<style>
-        body {
-            background-color: #0a0a0b;
-            color: #ffffff;
+</body>
+</html>            color: #ffffff;
             overflow-x: hidden;
         }
 
@@ -204,3 +774,1227 @@
         });
     </script>
 </body></html>
+<!-- Features Section -->
+<section class="features">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Let's get your financial company up and running</h2>
+            <h3 class="section-subtitle">Our Main Features</h3>
+        </div>
+
+        <div class="features-grid">
+            <!-- Feature Card 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h4 class="feature-title">Digital Signature + AI Documents</h4>
+                <p class="feature-description">Digital document signature management technology.</p>
+                <a href="#" class="feature-link">
+                    Learn more
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Feature Card 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
+                    </svg>
+                </div>
+                <h4 class="feature-title">Lead + Marketing Automation</h4>
+                <p class="feature-description">The perfect combination to maximize performance</p>
+                <a href="#" class="feature-link">
+                    Learn more
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Feature Card 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                    </svg>
+                </div>
+                <h4 class="feature-title">Custom Fields + Dynamic UI</h4>
+                <p class="feature-description">Make your CRM unique and tailored to your specific needs.</p>
+                <a href="#" class="feature-link">
+                    Learn more
+                    <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Pagination Dots -->
+        <div class="features-pagination">
+            <span class="pagination-dot active"></span>
+            <span class="pagination-dot"></span>
+            <span class="pagination-dot"></span>
+            <span class="pagination-dot"></span>
+            <span class="pagination-dot"></span>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Features Section */
+    .features {
+        padding: 6rem 2rem;
+        background: linear-gradient(180deg, #ffffff 0%, #f9fafb 100%);
+        position: relative;
+    }
+
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+    }
+
+    .section-subtitle {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text-gray);
+        margin-bottom: 0;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .feature-card {
+        background: var(--bg-white);
+        border: 2px solid var(--border-color);
+        border-radius: 24px;
+        padding: 2.5rem;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary-color);
+        box-shadow: 0 20px 40px rgba(224, 99, 140, 0.25);
+    }
+
+    .feature-card:hover::before {
+        opacity: 1;
+    }
+
+    .feature-card > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .feature-card:hover .feature-icon {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        transform: scale(1.1);
+    }
+
+    .feature-card:hover .feature-title,
+    .feature-card:hover .feature-description {
+        color: white;
+    }
+
+    .feature-card:hover .feature-link {
+        color: white;
+    }
+
+    .feature-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, rgba(224, 99, 140, 0.1), rgba(224, 99, 140, 0.05));
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .feature-title {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        line-height: 1.3;
+        transition: color 0.3s ease;
+    }
+
+    .feature-description {
+        font-size: 1rem;
+        color: var(--text-gray);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .feature-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .feature-link svg {
+        transition: transform 0.3s ease;
+    }
+
+    .feature-link:hover svg {
+        transform: translateX(4px);
+    }
+
+    /* Pagination Dots */
+    .features-pagination {
+        display: flex;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+
+    .pagination-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #d1d5db;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .pagination-dot:hover {
+        background: var(--primary-light);
+        transform: scale(1.2);
+    }
+
+    .pagination-dot.active {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        width: 32px;
+        border-radius: 6px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .features-grid {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.25rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .features {
+            padding: 4rem 1.5rem;
+        }
+
+        .feature-card {
+            padding: 2rem 1.5rem;
+        }
+    }
+</style>
+<!-- Competencies Section -->
+<section class="competencies">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Our Competencies</h2>
+            <p class="section-description">Comprehensive solutions designed for the financial industry</p>
+        </div>
+
+        <div class="competencies-grid">
+            <!-- Competency 1 -->
+            <div class="competency-card">
+                <div class="competency-line"></div>
+                <div class="competency-content">
+                    <h3 class="competency-title">Sales Network</h3>
+                    <p class="competency-description">
+                        Track your sales network's performance and your customers' data with a CRM system designed specifically for the finance world.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Competency 2 -->
+            <div class="competency-card">
+                <div class="competency-line"></div>
+                <div class="competency-content">
+                    <h3 class="competency-title">Finance and Credit</h3>
+                    <p class="competency-description">
+                        Fast quoting in just a few clicks: a value-added service for your sales network and customers.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Competency 3 -->
+            <div class="competency-card">
+                <div class="competency-line"></div>
+                <div class="competency-content">
+                    <h3 class="competency-title">BackOffice and Document Management</h3>
+                    <p class="competency-description">
+                        Simplified management of applications and documents for you and your customers, thanks to document automation features.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Competency 4 -->
+            <div class="competency-card">
+                <div class="competency-line"></div>
+                <div class="competency-content">
+                    <h3 class="competency-title">Compliance</h3>
+                    <p class="competency-description">
+                        Secure risk management, compliant with the latest audit and regulatory standards.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Competency 5 -->
+            <div class="competency-card">
+                <div class="competency-line"></div>
+                <div class="competency-content">
+                    <h3 class="competency-title">Mobile</h3>
+                    <p class="competency-description">
+                        Work and quote on the go, directly from iPhone and Android, with the new EGG Finance app.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Competency 6 -->
+            <div class="competency-card">
+                <div class="competency-line"></div>
+                <div class="competency-content">
+                    <h3 class="competency-title">Marketing Automation</h3>
+                    <p class="competency-description">
+                        Targeted marketing campaigns and higher ROI with the Marketing Automation module integrated into EGG Finance.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Competencies Section */
+    .competencies {
+        padding: 6rem 2rem;
+        background: var(--bg-white);
+        position: relative;
+    }
+
+    .competencies::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .section-description {
+        font-size: 1.125rem;
+        color: var(--text-gray);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .competencies-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+
+    .competency-card {
+        display: flex;
+        gap: 1.5rem;
+        padding: 2rem;
+        border-radius: 16px;
+        background: var(--bg-white);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        cursor: pointer;
+    }
+
+    .competency-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(224, 99, 140, 0.03), rgba(224, 99, 140, 0.06));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .competency-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .competency-card:hover::before {
+        opacity: 1;
+    }
+
+    .competency-card:hover .competency-line {
+        height: 80px;
+        background: linear-gradient(180deg, var(--primary-color), var(--primary-dark));
+        box-shadow: 0 4px 12px rgba(224, 99, 140, 0.4);
+    }
+
+    .competency-card:hover .competency-title {
+        color: var(--primary-color);
+    }
+
+    .competency-line {
+        flex-shrink: 0;
+        width: 4px;
+        height: 60px;
+        background: linear-gradient(180deg, var(--primary-color), var(--primary-light));
+        border-radius: 2px;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        z-index: 1;
+    }
+
+    .competency-content {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+    }
+
+    .competency-title {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 0.75rem;
+        position: relative;
+        display: inline-block;
+        transition: color 0.3s ease;
+    }
+
+    .competency-title::after {
+        content: '';
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--primary-color), transparent);
+        transition: width 0.4s ease;
+    }
+
+    .competency-card:hover .competency-title::after {
+        width: 60px;
+    }
+
+    .competency-description {
+        font-size: 1rem;
+        color: var(--text-gray);
+        line-height: 1.7;
+        margin: 0;
+        transition: color 0.3s ease;
+    }
+
+    /* Animations */
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .competency-card {
+        animation: slideInUp 0.6s ease-out backwards;
+    }
+
+    .competency-card:nth-child(1) { animation-delay: 0.1s; }
+    .competency-card:nth-child(2) { animation-delay: 0.2s; }
+    .competency-card:nth-child(3) { animation-delay: 0.3s; }
+    .competency-card:nth-child(4) { animation-delay: 0.4s; }
+    .competency-card:nth-child(5) { animation-delay: 0.5s; }
+    .competency-card:nth-child(6) { animation-delay: 0.6s; }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .competencies-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .competencies {
+            padding: 4rem 1.5rem;
+        }
+
+        .competency-card {
+            padding: 1.5rem;
+            gap: 1rem;
+        }
+
+        .competency-line {
+            height: 50px;
+        }
+
+        .competency-title {
+            font-size: 1.25rem;
+        }
+
+        .competency-description {
+            font-size: 0.95rem;
+        }
+    }
+</style>
+<!-- Case Studies Section -->
+<section class="case-studies">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Case Studies</h2>
+            <p class="section-description">Discover how leading companies transformed their operations with EGG Finance</p>
+        </div>
+
+        <div class="case-studies-grid">
+            <!-- Case Study 1 -->
+            <div class="case-card">
+                <div class="case-logo">
+                    <div class="logo-placeholder orange">
+                        <span>facile.it</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">Facile.it</h3>
+                    <p class="case-description">
+                        Implementation of EGG Finance to integrate quoting and coordinate online consultants, the Nexus network, and stores.
+                    </p>
+                    <a href="#" class="case-link">
+                        Learn more
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Case Study 2 -->
+            <div class="case-card">
+                <div class="case-logo">
+                    <div class="logo-placeholder gradient-blue">
+                        <span>Bibanca</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">Bibanca</h3>
+                    <p class="case-description">
+                        Modular and customizable use of EGG Finance for quoting, application management, marketing, and documentation.
+                    </p>
+                    <a href="#" class="case-link">
+                        Learn more
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Case Study 3 -->
+            <div class="case-card">
+                <div class="case-logo">
+                    <div class="logo-placeholder gradient-purple">
+                        <span>Affida</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">Affida</h3>
+                    <p class="case-description">
+                        Complete and reliable solution, supported by strong market references and proven experience across our sales network.
+                    </p>
+                    <a href="#" class="case-link">
+                        Learn more
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Case Study 4 -->
+            <div class="case-card">
+                <div class="case-logo">
+                    <div class="logo-placeholder gradient-gold">
+                        <span>Toscano Mutui</span>
+                    </div>
+                </div>
+                <div class="case-content">
+                    <h3 class="case-title">Toscano Mutui</h3>
+                    <p class="case-description">
+                        In the marketing and lead management fields, we're already seeing significant benefits in a very short time.
+                    </p>
+                    <a href="#" class="case-link">
+                        Learn more
+                        <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="case-studies-footer">
+            <a href="#" class="btn-see-all">
+                See all
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Case Studies Section */
+    .case-studies {
+        padding: 6rem 2rem;
+        background: linear-gradient(180deg, #f9fafb 0%, #ffffff 100%);
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-title {
+        font-size: 2.75rem;
+        font-weight: 800;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+    }
+
+    .section-description {
+        font-size: 1.125rem;
+        color: var(--text-gray);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .case-studies-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    .case-card {
+        background: var(--bg-white);
+        border-radius: 24px;
+        padding: 2.5rem 2rem;
+        box-shadow: var(--shadow-sm);
+        border: 1px solid var(--border-color);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .case-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .case-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: rgba(224, 99, 140, 0.3);
+    }
+
+    .case-card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .case-logo {
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80px;
+    }
+
+    .logo-placeholder {
+        padding: 1.5rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .logo-placeholder.orange {
+        background: linear-gradient(135deg, #fb923c, #f97316);
+        color: white;
+    }
+
+    .logo-placeholder.gradient-blue {
+        background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        color: white;
+    }
+
+    .logo-placeholder.gradient-purple {
+        background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+        color: white;
+    }
+
+    .logo-placeholder.gradient-gold {
+        background: linear-gradient(135deg, #d4a574, #b8956a);
+        color: white;
+    }
+
+    .case-card:hover .logo-placeholder {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .case-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .case-title {
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+        transition: color 0.3s ease;
+    }
+
+    .case-card:hover .case-title {
+        color: var(--primary-color);
+    }
+
+    .case-description {
+        font-size: 0.95rem;
+        color: var(--text-gray);
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+        flex: 1;
+    }
+
+    .case-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+    }
+
+    .case-link svg {
+        transition: transform 0.3s ease;
+    }
+
+    .case-link:hover {
+        gap: 0.75rem;
+    }
+
+    .case-link:hover svg {
+        transform: translateX(4px);
+    }
+
+    .case-studies-footer {
+        text-align: center;
+        margin-top: 3rem;
+    }
+
+    .btn-see-all {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: var(--primary-color);
+        font-weight: 600;
+        font-size: 1rem;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border: 2px solid var(--primary-color);
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        background: transparent;
+    }
+
+    .btn-see-all svg {
+        transition: transform 0.3s ease;
+    }
+
+    .btn-see-all:hover {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(224, 99, 140, 0.4);
+    }
+
+    .btn-see-all:hover svg {
+        transform: translateX(4px);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .case-card {
+        animation: fadeInUp 0.6s ease-out backwards;
+    }
+
+    .case-card:nth-child(1) { animation-delay: 0.1s; }
+    .case-card:nth-child(2) { animation-delay: 0.2s; }
+    .case-card:nth-child(3) { animation-delay: 0.3s; }
+    .case-card:nth-child(4) { animation-delay: 0.4s; }
+
+    /* Responsive */
+    @media (max-width: 1280px) {
+        .case-studies-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .case-studies-grid {
+            grid-template-columns: 1fr;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .case-studies {
+            padding: 4rem 1.5rem;
+        }
+
+        .case-card {
+            padding: 2rem 1.5rem;
+        }
+    }
+</style>
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-background">
+        <div class="cta-gradient-orb orb-1"></div>
+        <div class="cta-gradient-orb orb-2"></div>
+        <div class="cta-gradient-orb orb-3"></div>
+    </div>
+    
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">
+                Experience your future with no strings attached<br>
+                <span>and with one of our experts</span>
+            </h2>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary btn-large btn-glow">
+                    Request a Demo
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+                <a href="#" class="btn btn-white btn-large">
+                    Contact
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* CTA Section */
+    .cta-section {
+        padding: 8rem 2rem;
+        background: #1a1a1a;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .cta-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 0;
+    }
+
+    .cta-gradient-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0;
+        animation: floatOrb 20s infinite ease-in-out;
+    }
+
+    .orb-1 {
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(circle, rgba(224, 99, 140, 0.4) 0%, transparent 70%);
+        top: -200px;
+        right: -100px;
+        animation-delay: 0s;
+    }
+
+    .orb-2 {
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(224, 99, 140, 0.3) 0%, transparent 70%);
+        bottom: -150px;
+        left: -100px;
+        animation-delay: 5s;
+    }
+
+    .orb-3 {
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(244, 143, 177, 0.25) 0%, transparent 70%);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: 10s;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        opacity: 0.5;
+        z-index: 1;
+    }
+
+    .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .cta-content {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .cta-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: white;
+        line-height: 1.2;
+        margin-bottom: 3rem;
+        letter-spacing: -0.02em;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .cta-title span {
+        display: block;
+        margin-top: 0.5rem;
+        background: linear-gradient(135deg, #ffffff 0%, #f48fb1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+
+    .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn-large {
+        padding: 1.25rem 3rem;
+        font-size: 1.0625rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        box-shadow: 0 8px 20px rgba(224, 99, 140, 0.4);
+    }
+
+    .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.6s ease;
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(224, 99, 140, 0.6);
+    }
+
+    .btn-primary:hover::before {
+        left: 100%;
+    }
+
+    .btn-glow {
+        animation: glowPulse 3s infinite;
+    }
+
+    .btn-white {
+        background: white;
+        color: var(--primary-color);
+        box-shadow: 0 8px 20px rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-white::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(224, 99, 140, 0.1), rgba(224, 99, 140, 0.05));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .btn-white > * {
+        position: relative;
+        z-index: 1;
+    }
+
+    .btn-white:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 32px rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-white:hover::before {
+        opacity: 1;
+    }
+
+    .btn svg {
+        transition: transform 0.3s ease;
+    }
+
+    .btn:hover svg {
+        transform: translateX(4px);
+    }
+
+    /* Animations */
+    @keyframes floatOrb {
+        0%, 100% {
+            opacity: 0;
+            transform: translate(0, 0) scale(0.8);
+        }
+        50% {
+            opacity: 1;
+            transform: translate(30px, -30px) scale(1.2);
+        }
+    }
+
+    @keyframes glowPulse {
+        0%, 100% {
+            box-shadow: 0 8px 20px rgba(224, 99, 140, 0.4);
+        }
+        50% {
+            box-shadow: 0 8px 32px rgba(224, 99, 140, 0.7);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .cta-title {
+            font-size: 2.5rem;
+        }
+
+        .cta-section {
+            padding: 6rem 2rem;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .cta-title {
+            font-size: 2rem;
+        }
+
+        .cta-buttons {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .btn-large {
+            padding: 1.125rem 2.5rem;
+        }
+
+        .cta-section {
+            padding: 4rem 1.5rem;
+        }
+    }
+
+    /* Intersection Observer for scroll animations */
+    .cta-section.visible .cta-title {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .cta-section.visible .cta-buttons {
+        animation: fadeInUp 0.8s ease-out 0.2s both;
+    }
+</style>
+
+<script>
+    // Trigger animation when section comes into view
+    const ctaSection = document.querySelector('.cta-section');
+    
+    const ctaObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.3 });
+
+    if (ctaSection) {
+        ctaObserver.observe(ctaSection);
+    }
+</script>
