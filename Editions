@@ -131,7 +131,7 @@
 <div class="hidden md:flex items-center gap-lg">
 <a class="text-on-surface-variant transition-colors font-medium" href="#">Home</a>
 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Functionality</a>
-<a class="hover:text-accent-pink transition-colors font-label-md text-sm border-primary font-semibold text-on-surface-variant border-b-2" href="Editions">Editions</a>
+<a class="hover:text-accent-pink transition-colors font-label-md text-sm border-primary font-semibold text-on-surface-variant border-b-2" href="Editions.html">Editions</a>
 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Success Stories</a>
 
 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Team</a>
