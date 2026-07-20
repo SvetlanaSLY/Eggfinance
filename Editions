@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGG Finance - Editions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #e0638c;
+            --primary-dark: #c44d74;
+            --primary-light: #f48fb1;
+            --primary-bg: #fdf2f6;
+            --text-dark: #1a1a2e;
+            --text-gray: #6b7280;
+            --text-light: #9ca3af;
+            --bg-white: #ffffff;
+            --bg-light: #f9fafb;
+            --border-color: #e5e7eb;
+            --success-color: #4caf50;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+            background: var(--bg-white);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-light);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* ==================== NAVIGATION ==================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1.25rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 800;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .globe-icon {
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            color: var(--text-gray);
+            transition: var(--transition);
+        }
+
+        .globe-icon:hover {
+            color: var(--primary-color);
+            transform: rotate(15deg);
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(224, 99, 140, 0.5);
+        }
+
+        /* ==================== EDITIONS PAGE ==================== */
+        .editions-page {
+            padding-top: 120px;
+            padding-bottom: 6rem;
+            background: var(--bg-white);
+            min-height: 100vh;
+        }
+
+        .editions-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .editions-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+
+        /* Billing Toggle */
+        .billing-toggle {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bg-white);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            padding: 0.375rem;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .billing-toggle input {
+            display: none;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0.375rem;
+            left: 0.375rem;
+            width: calc(50% - 0.375rem);
+            height: calc(100% - 0.75rem);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            border-radius: 50px;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 8px rgba(224, 99, 140, 0.3);
+        }
+
+        .billing-toggle.annual .toggle-slider {
+            transform: translateX(100%);
+        }
+
+        .toggle-labels {
+            display: flex;
+            position: relative;
+            z-index: 1;
+        }
+
+        .toggle-label {
+            padding: 0.625rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--primary-color);
+            transition: color 0.3s ease;
+            user-select: none;
+        }
+
+        .toggle-label.active {
+            color: white;
+        }
+
+        .save-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            margin-left: 0.75rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--bg-white);
+            border: 2px solid var(--border-color);
+            border-radius: 24px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #fdf2f6 0%, #fce4ec 100%);
+            border-color: var(--primary-color);
+            transform: scale(1.02);
+            box-shadow: 0 20px 40px rgba(224, 99, 140, 0.2);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-8px);
+            box-shadow: 0 24px 48px rgba(224, 99, 140, 0.3);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 0.375rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.4);
+        }
+
+        .edition-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .edition-price {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-left: 0.25rem;
+        }
+
+        .price-from {
+            font-size: 0.875rem;
+            color: var(--text-gray);
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .edition-description {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            min-height: 48px;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem 0;
+            flex: 1;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            line-height: 1.5;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li.featured-feature {
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .check-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--success-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            margin-top: 2px;
+        }
+
+        .check-icon svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(224, 99, 140, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(224, 99, 140, 0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Price Animation */
+        .price-animate {
+            animation: priceChange 0.4s ease-out;
+        }
+
+        @keyframes priceChange {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .editions-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .editions-page {
+                padding-top: 100px;
+                padding-bottom: 4rem;
+            }
+
+            .editions-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .editions-title {
+                font-size: 1.75rem;
+            }
+
+            .pricing-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .price-amount {
+                font-size: 2.25rem;
+            }
+
+            .toggle-label {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pricing-card {
+            animation: fadeInUp 0.6s ease-out backwards;
+        }
+
+        .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">E</div>
+                <span>EGG finance™</span>
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#" class="active">Editions</a></li>
+                <li><a href="#">Success Stories</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <svg class="globe-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <a href="#" class="btn btn-primary">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Editions Page -->
+    <section class="editions-page">
+        <div class="container">
+            <div class="editions-header">
+                <h1 class="editions-title">Editions</h1>
+                
+                <label class="billing-toggle" id="billingToggle">
+                    <input type="checkbox" id="billingSwitch">
+                    <div class="toggle-slider"></div>
+                    <div class="toggle-labels">
+                        <span class="toggle-label active" id="monthlyLabel">Monthly</span>
+                        <span class="toggle-label" id="annualLabel">Annual</span>
+                    </div>
+                </label>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- EGG Finance SE -->
+                <div class="pricing-card">
+                    <h3 class="edition-name">EGG finance SE</h3>
+                    <div class="edition-price">
+                        <div class="price-from">From</div>
+                        <span class="price-amount" data-monthly="299" data-annual="239">299€</span>
+                        <span class="price-period">/mo</span>
+                    </div>
+                    <p class="edition-description">Ideal for small teams with fundamental needs.</p>
+                    
+                    <ul class="features-list">
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Case and Client Management
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Custom Fields
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Document Capture
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Calendar with Appointments and Calls
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Telemarketing Campaigns and Lead Management
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Commissions and Invoicing
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Mobile Access and Management
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            EGG Fusion: Contact Acquisition from Third Parties
+                        </li>
+                    </ul>
+
+                    <button class="cta-button">Request a Demo</button>
+                </div>
+
+                <!-- EGG Finance 3.0 (Featured) -->
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <h3 class="edition-name">EGG finance 3.0</h3>
+                    <div class="edition-price">
+                        <div class="price-from">From</div>
+                        <span class="price-amount" data-monthly="2199" data-annual="1759">2.199€</span>
+                        <span class="price-period">/mo</span>
+                    </div>
+                    <p class="edition-description">EGG Finance Colibri (Custom UI) + Data Analytics + Marketing Automation + AI</p>
+                    
+                    <ul class="features-list">
+                        <li class="featured-feature">
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Everything in EGG Finance SE
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            EGG Finance Colibri: Custom UI
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Data Analytics
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Marketing Automation
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            AI
+                        </li>
+                    </ul>
+
+                    <button class="cta-button">Request a Demo</button>
+                </div>
+
+                <!-- EGG Finance 3.0 - Bank Edition -->
+                <div class="pricing-card">
+                    <h3 class="edition-name">EGG finance 3.0 - Bank Edition</h3>
+                    <div class="edition-price">
+                        <div class="price-from">From</div>
+                        <span class="price-amount" data-monthly="9999" data-annual="7999">9.999€</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <p class="edition-description">The platform for the banking sector to create enterprise applications</p>
+                    
+                    <ul class="features-list">
+                        <li class="featured-feature">
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Everything in EGG Finance 3.0
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Exclusive Banking Sector Functionalities
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Dedicated Consultants
+                        </li>
+                        <li>
+                            <span class="check-icon">
+                                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </span>
+                            Advanced Security Standards
+                        </li>
+                    </ul>
+
+                    <button class="cta-button">Request a Demo</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Billing Toggle Functionality
+        const billingToggle = document.getElementById('billingToggle');
+        const billingSwitch = document.getElementById('billingSwitch');
+        const monthlyLabel = document.getElementById('monthlyLabel');
+        const annualLabel = document.getElementById('annualLabel');
+        const priceAmounts = document.querySelectorAll('.price-amount');
+
+        billingToggle.addEventListener('click', (e) => {
+            e.preventDefault();
+            billingSwitch.checked = !billingSwitch.checked;
+            toggleBilling();
+        });
+
+        function toggleBilling() {
+            const isAnnual = billingSwitch.checked;
+            
+            if (isAnnual) {
+                billingToggle.classList.add('annual');
+                monthlyLabel.classList.remove('active');
+                annualLabel.classList.add('active');
+            } else {
+                billingToggle.classList.remove('annual');
+                monthlyLabel.classList.add('active');
+                annualLabel.classList.remove('active');
+            }
+
+            // Animate price change
+            priceAmounts.forEach(amount => {
+                amount.classList.remove('price-animate');
+                void amount.offsetWidth; // Trigger reflow
+                amount.classList.add('price-animate');
+
+                const monthlyPrice = amount.dataset.monthly;
+                const annualPrice = amount.dataset.annual;
+                const newPrice = isAnnual ? annualPrice : monthlyPrice;
+                
+                // Format with dots for thousands
+                amount.textContent = formatPrice(newPrice) + '€';
+            });
+        }
+
+        function formatPrice(price) {
+            return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+
+        // CTA Button Click
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function() {
+                const card = this.closest('.pricing-card');
+                const editionName = card.querySelector('.edition-name').textContent;
+                console.log('Demo requested for:', editionName);
+                // Add your demo request logic here
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
