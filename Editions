@@ -122,11 +122,12 @@
 <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 shadow-sm flex justify-between items-center px-margin-desktop py-4 max-w-full mx-auto">
 <div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tight">EGG Finance</div>
 <div class="hidden md:flex items-center gap-lg">
-<a class="text-on-surface-variant transition-colors font-medium border-b-2 border-transparent hover:text-primary" href="#">Platform</a>
-<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Solutions</a>
-<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Features</a>
-<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Pricing</a>
-<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Resources</a>
+<a class="text-on-surface-variant transition-colors font-medium border-b-2 border-transparent hover:text-primary" href="#">Home</a>
+<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Functionality</a>
+<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Editions</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">Success Stories</a>
+<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Team</a>
+<a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="#">Contact</a>
 </div>
 <div class="flex items-center gap-md">
 <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">language</button>
