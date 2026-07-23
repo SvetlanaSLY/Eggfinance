@@ -167,6 +167,26 @@
         .map-container:hover iframe {
             filter: saturate(1) contrast(1.1);
         }
+        .faq-item {
+            border-bottom: 1px solid rgba(161, 50, 91, 0.1);
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out, padding 0.4s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
         @media (prefers-reduced-motion: reduce) {
             .reveal-on-scroll, .animate-float, .animate-pulse-slow, .animate-scroll, .shimmer-btn::after, .animate-fade-in-up, .hover\:scale-105 {
                 animation: none !important;
@@ -211,131 +231,23 @@
     </div>
 
     <main class="pt-24 md:pt-32">
-        <!-- Hero Section (Home page headline style) -->
-        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden">
-            <div class="max-w-7xl mx-auto text-center mb-12 md:mb-16">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 animate-fade-in-up" style="animation-delay: 100ms;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+        <!-- Hero Section (Improved spacing and styling) -->
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden mb-16 md:mb-24">
+            <div class="max-w-7xl mx-auto text-center">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-8 animate-fade-in-up" style="animation-delay: 100ms;">
+                    <span class="w-2 h-2 rounded-full bg-accent-pink animate-pulse"></span>
                     <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Get In Touch</span>
                 </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-on-surface mt-6 mb-4 animate-fade-in-up" style="animation-delay: 200ms;">
-                    Want to explore how EGG Finance can work for your business?
-                    <br/>
-                    <span class="text-secondary/40 italic font-light">We're here to</span>
-                    <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">help.</span>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.15] md:leading-[1.2] animate-fade-in-up" style="animation-delay: 200ms; letter-spacing: -0.02em;">
+                    Want to explore how EGG Finance can work<br/>
+                    for your business?
                 </h1>
-                <p class="text-base md:text-lg text-secondary leading-relaxed max-w-2xl mx-auto font-medium opacity-90 animate-fade-in-up" style="animation-delay: 300ms;">
+                <p class="text-3xl md:text-4xl lg:text-5xl font-light italic text-secondary/40 mb-2 animate-fade-in-up" style="animation-delay: 300ms;">
+                    We're here to <span class="font-semibold text-accent-pink not-italic">help.</span>
+                </p>
+                <p class="text-base md:text-lg text-secondary leading-relaxed max-w-2xl mx-auto mt-8 font-medium opacity-90 animate-fade-in-up" style="animation-delay: 400ms; letter-spacing: 0.01em;">
                     Fill out the form below and our team will get back to you as soon as possible.
                 </p>
-            </div>
-        </section>
-
-        <!-- Info Cards + Map Section -->
-        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
-            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6 md:gap-8">
-                
-                <!-- Whether you're card -->
-                <div class="frost-card p-8 md:p-10 rounded-2xl md:rounded-[2rem] reveal-on-scroll bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
-                    <h2 class="text-xl md:text-2xl font-extrabold text-on-surface mb-6 md:mb-8">Whether you're:</h2>
-                    <ul class="space-y-4 md:space-y-5">
-                        <li class="flex items-start gap-3 md:gap-4 group">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">search</span>
-                            <span class="text-sm md:text-base text-secondary font-medium">looking for product information</span>
-                        </li>
-                        <li class="flex items-start gap-3 md:gap-4 group">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">handshake</span>
-                            <span class="text-sm md:text-base text-secondary font-medium">interested in a partnership</span>
-                        </li>
-                        <li class="flex items-start gap-3 md:gap-4 group">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">build</span>
-                            <span class="text-sm md:text-base text-secondary font-medium">experiencing a technical issue</span>
-                        </li>
-                        <li class="flex items-start gap-3 md:gap-4 group">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">info</span>
-                            <span class="text-sm md:text-base text-secondary font-medium">or just want to learn more</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Milan Office Info Card -->
-                <div class="frost-card p-8 md:p-10 rounded-2xl md:rounded-[2rem] reveal-on-scroll bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 relative overflow-hidden" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%); transition-delay: 150ms;">
-                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-pulse-slow"></div>
-                    <div class="relative z-10">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
-                            <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Headquarters</span>
-                        </div>
-                        <h2 class="text-xl md:text-2xl font-extrabold text-on-surface mb-6">Visit us in Milan</h2>
-                        
-                        <div class="space-y-5">
-                            <a href="https://maps.google.com/?q=Via+Monte+Napoleone+8+Milan" target="_blank" class="flex items-start gap-4 group">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
-                                    <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">location_on</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Address</div>
-                                    <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">Via Monte Napoleone, 8<br/>20121 Milano MI, Italy</div>
-                                </div>
-                            </a>
-                            
-                            <a href="tel:+390212345678" class="flex items-start gap-4 group">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
-                                    <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">phone</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Phone</div>
-                                    <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">+39 02 1234 5678</div>
-                                </div>
-                            </a>
-                            
-                            <a href="mailto:hello@eggfinance.com" class="flex items-start gap-4 group">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
-                                    <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">mail</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Email</div>
-                                    <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">hello@eggfinance.com</div>
-                                </div>
-                            </a>
-                            
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 flex-shrink-0">
-                                    <span class="material-symbols-outlined text-primary text-xl">schedule</span>
-                                </div>
-                                <div>
-                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Hours</div>
-                                    <div class="text-sm md:text-base text-on-surface font-semibold">Mon – Fri: 9:00 – 18:00 CET</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Interactive Map -->
-            <div class="max-w-7xl mx-auto mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 200ms;">
-                <div class="frost-card rounded-2xl md:rounded-[2rem] overflow-hidden border border-primary/5 shadow-md map-container" style="background: white;">
-                    <div class="flex items-center justify-between px-6 md:px-8 py-4 border-b border-primary/5">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-                            <span class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-on-surface">Live Map · Milan, Italy</span>
-                        </div>
-                        <a href="https://maps.google.com/?q=Via+Monte+Napoleone+8+Milan" target="_blank" class="text-xs font-bold text-primary hover:text-accent-pink transition-colors flex items-center gap-1">
-                            Open in Google Maps <span class="material-symbols-outlined text-base">open_in_new</span>
-                        </a>
-                    </div>
-                    <div class="relative w-full h-[300px] md:h-[450px]">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.0671567087!2d9.191383315592!3d45.468498979104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6aec3463a5d%3A0x6d5a7e8b6e8b6e8b!2sVia+Monte+Napoleone%2C+8%2C+20121+Milano+MI%2C+Italy!5e0!3m2!1sen!2sit!4v1700000000000!5m2!1sen!2sit"
-                            class="absolute inset-0 w-full h-full"
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="EGG Finance Milan Office Location">
-                        </iframe>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -343,20 +255,8 @@
         <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24 relative overflow-hidden">
             <div class="absolute inset-0 mesh-gradient opacity-20"></div>
             <div class="max-w-4xl mx-auto relative z-10">
-                <div class="text-center mb-10 md:mb-14 reveal-on-scroll">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-5">
-                        <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
-                        <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Send us a message</span>
-                    </div>
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] text-on-surface mb-4">
-                        Want to see what <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">benefits</span> you can get?
-                    </h2>
-                    <p class="text-base md:text-lg text-secondary font-medium opacity-90 max-w-xl mx-auto">
-                        Our specialists are ready to assist you.
-                    </p>
-                </div>
-                
                 <div class="frost-card p-6 md:p-10 lg:p-14 rounded-2xl md:rounded-[2rem] shadow-xl border border-primary/5 reveal-on-scroll bg-white" style="background: white; transition-delay: 100ms;">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-8 text-center">Want to see what benefits you can get?</h2>
                     <form class="space-y-5 md:space-y-6">
                         <div class="grid md:grid-cols-2 gap-4 md:gap-6">
                             <div>
@@ -411,6 +311,232 @@
                 <p class="text-center text-xs text-secondary/60 mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 200ms;">
                     All messages are handled confidentially and in accordance with our data protection and privacy standards.
                 </p>
+            </div>
+        </section>
+
+        <!-- Headquarters + Map Side by Side -->
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-6 md:gap-8">
+                    
+                    <!-- Whether you're card (Premium wide version) -->
+                    <div class="frost-card p-8 md:p-12 rounded-2xl md:rounded-[2rem] reveal-on-scroll bg-white border border-primary/5 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden" style="background: radial-gradient(circle at top right, rgba(224, 99, 140, 0.06) 0%, rgba(248, 249, 250, 0.98) 70%);">
+                        <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse-slow"></div>
+                        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-accent-pink/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 2s;"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+                                <span class="text-primary font-bold text-[10px] uppercase tracking-widest">How we can help</span>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-8 leading-tight">Whether you're:</h2>
+                            <ul class="space-y-5 md:space-y-6">
+                                <li class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0 group-hover:scale-110">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">search</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold mb-1">Looking for product information</div>
+                                        <div class="text-xs text-secondary/70">Get detailed specs and pricing</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0 group-hover:scale-110">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">handshake</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold mb-1">Interested in a partnership</div>
+                                        <div class="text-xs text-secondary/70">Explore collaboration opportunities</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0 group-hover:scale-110">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">build</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold mb-1">Experiencing a technical issue</div>
+                                        <div class="text-xs text-secondary/70">Get expert support quickly</div>
+                                    </div>
+                                </li>
+                                <li class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0 group-hover:scale-110">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">info</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold mb-1">Or just want to learn more</div>
+                                        <div class="text-xs text-secondary/70">Discover what we can do for you</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Milan Office Info Card -->
+                    <div class="frost-card p-8 md:p-12 rounded-2xl md:rounded-[2rem] reveal-on-scroll bg-white border border-primary/5 shadow-lg hover:shadow-2xl transition-all duration-500 relative overflow-hidden" style="background: radial-gradient(circle at top left, rgba(224, 99, 140, 0.06) 0%, rgba(248, 249, 250, 0.98) 70%); transition-delay: 150ms;">
+                        <div class="absolute -top-20 -right-20 w-64 h-64 bg-accent-pink/5 rounded-full blur-3xl animate-pulse-slow" style="animation-delay: 1s;"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-6">
+                                <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+                                <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Headquarters</span>
+                            </div>
+                            <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-8 leading-tight">Visit us in Milan</h2>
+                            
+                            <div class="space-y-5">
+                                <a href="https://maps.google.com/?q=Via+Monte+Napoleone+8+Milan" target="_blank" class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">location_on</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Address</div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">Via Monte Napoleone, 8<br/>20121 Milano MI, Italy</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="tel:+390212345678" class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">phone</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Phone</div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">+39 02 1234 5678</div>
+                                    </div>
+                                </a>
+                                
+                                <a href="mailto:hello@eggfinance.com" class="flex items-start gap-4 group">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">mail</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Email</div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">hello@eggfinance.com</div>
+                                    </div>
+                                </a>
+                                
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary text-xl">schedule</span>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Hours</div>
+                                        <div class="text-sm md:text-base text-on-surface font-semibold">Mon – Fri: 9:00 – 18:00 CET</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Map (Full Width) -->
+                <div class="max-w-7xl mx-auto mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 300ms;">
+                    <div class="frost-card rounded-2xl md:rounded-[2rem] overflow-hidden border border-primary/5 shadow-lg map-container" style="background: white;">
+                        <div class="flex items-center justify-between px-6 md:px-8 py-4 border-b border-primary/5">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
+                                <span class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-on-surface">Live Map · Milan, Italy</span>
+                            </div>
+                            <a href="https://maps.google.com/?q=Via+Monte+Napoleone+8+Milan" target="_blank" class="text-xs font-bold text-primary hover:text-accent-pink transition-colors flex items-center gap-1">
+                                Open in Google Maps <span class="material-symbols-outlined text-base">open_in_new</span>
+                            </a>
+                        </div>
+                        <div class="relative w-full h-[300px] md:h-[450px]">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.0671567087!2d9.191383315592!3d45.468498979104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6aec3463a5d%3A0x6d5a7e8b6e8b6e8b!2sVia+Monte+Napoleone%2C+8%2C+20121+Milano+MI%2C+Italy!5e0!3m2!1sen!2sit!4v1700000000000!5m2!1sen!2sit"
+                                class="absolute inset-0 w-full h-full"
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="EGG Finance Milan Office Location">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-10 md:mb-14 reveal-on-scroll">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+                        <span class="text-primary font-bold text-[10px] uppercase tracking-widest">FAQ</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] text-on-surface mb-4">
+                        Frequently Asked <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Questions</span>
+                    </h2>
+                    <p class="text-base md:text-lg text-secondary font-medium opacity-90 max-w-xl mx-auto">
+                        Everything you need to know about contacting us.
+                    </p>
+                </div>
+
+                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] shadow-lg border border-primary/5 reveal-on-scroll bg-white" style="transition-delay: 100ms;">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="text-base md:text-lg font-semibold text-on-surface">What is your typical response time?</h3>
+                            <span class="material-symbols-outlined text-primary text-xl faq-icon flex-shrink-0">expand_more</span>
+                        </div>
+                        <div class="faq-answer pt-4">
+                            <p class="text-sm md:text-base text-secondary leading-relaxed">
+                                We typically respond to all inquiries within 1 business day. For urgent technical issues, our support team aims to respond within 4 hours during business hours (9:00 – 18:00 CET, Monday to Friday).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="text-base md:text-lg font-semibold text-on-surface">Can I schedule a demo before contacting sales?</h3>
+                            <span class="material-symbols-outlined text-primary text-xl faq-icon flex-shrink-0">expand_more</span>
+                        </div>
+                        <div class="faq-answer pt-4">
+                            <p class="text-sm md:text-base text-secondary leading-relaxed">
+                                Absolutely! You can request a personalized demo directly through our contact form. Simply select "Product Information" as your inquiry type and mention that you'd like to schedule a demo in your message.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="text-base md:text-lg font-semibold text-on-surface">Do you offer support in languages other than English?</h3>
+                            <span class="material-symbols-outlined text-primary text-xl faq-icon flex-shrink-0">expand_more</span>
+                        </div>
+                        <div class="faq-answer pt-4">
+                            <p class="text-sm md:text-base text-secondary leading-relaxed">
+                                Yes, our team speaks multiple languages including Italian, English, Spanish, and French. When you contact us, feel free to write in your preferred language and we'll match you with the appropriate specialist.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="text-base md:text-lg font-semibold text-on-surface">What information should I include in my inquiry?</h3>
+                            <span class="material-symbols-outlined text-primary text-xl faq-icon flex-shrink-0">expand_more</span>
+                        </div>
+                        <div class="faq-answer pt-4">
+                            <p class="text-sm md:text-base text-secondary leading-relaxed">
+                                To help us assist you better, please include: your name and company, a brief description of your needs or challenges, your preferred contact method, and any specific questions you have. The more details you provide, the better we can tailor our response to your needs.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 -->
+                    <div class="faq-item py-5 cursor-pointer" onclick="toggleFaq(this)">
+                        <div class="flex items-center justify-between gap-4">
+                            <h3 class="text-base md:text-lg font-semibold text-on-surface">Is there a cost for initial consultation?</h3>
+                            <span class="material-symbols-outlined text-primary text-xl faq-icon flex-shrink-0">expand_more</span>
+                        </div>
+                        <div class="faq-answer pt-4">
+                            <p class="text-sm md:text-base text-secondary leading-relaxed">
+                                No, our initial consultation is completely free. We believe in understanding your needs first before discussing any potential solutions or pricing. There's no obligation, and we're here to help you find the best fit for your business.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -545,6 +671,21 @@
         document.querySelectorAll('.reveal-on-scroll').forEach(el => {
             observer.observe(el);
         });
+
+        // FAQ Toggle Function
+        function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            
+            // Close all FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked item if it wasn't active
+            if (!isActive) {
+                element.classList.add('active');
+            }
+        }
 
         // Form submission handler
         document.querySelector('form').addEventListener('submit', (e) => {
