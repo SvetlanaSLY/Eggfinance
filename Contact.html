@@ -160,6 +160,13 @@
             border-color: #a1325b;
             box-shadow: 0 0 0 3px rgba(161, 50, 91, 0.1);
         }
+        .map-container iframe {
+            filter: saturate(0.85) contrast(1.05);
+            transition: filter 0.5s ease;
+        }
+        .map-container:hover iframe {
+            filter: saturate(1) contrast(1.1);
+        }
         @media (prefers-reduced-motion: reduce) {
             .reveal-on-scroll, .animate-float, .animate-pulse-slow, .animate-scroll, .shimmer-btn::after, .animate-fade-in-up, .hover\:scale-105 {
                 animation: none !important;
@@ -180,13 +187,14 @@
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html">Home</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html#features">Features</a>
                 <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="Editions.html">Editions</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html#resources">Success Stories</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="team">About</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html#resources">Case Studies</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="team">Team</a>
+                <a class="text-primary border-primary border-b-2 font-semibold font-label-md text-xs" href="Contact.html">Contact</a>
             </div>
         </div>
         <div class="flex items-center gap-3 md:gap-4">
-            <button class="material-symbols-outlined text-secondary hover:text-primary transition-colors text-xl hidden md:block">language</button>
-            <button class="bg-accent-pink border border-accent-pink text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-bold text-xs hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn">Contact</button>
+            <button class="material-symbols-outlined text-secondary hover:text-primary transition-colors text-xl hidden md:block">search</button>
+            <button class="bg-accent-pink border border-accent-pink text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-bold text-xs hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn">Get Started</button>
             <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-secondary hover:text-primary transition-colors text-2xl">menu</button>
         </div>
     </nav>
@@ -196,89 +204,185 @@
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html">Home</a>
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html#features">Features</a>
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="Editions.html">Editions</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html#resources">Success Stories</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="team">About</a>
-        <button class="bg-accent-pink border border-accent-pink text-white px-5 py-3 rounded-full font-bold text-sm hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn w-full mt-4">Contact</button>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html#resources">Case Studies</a>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="team">Team</a>
+        <a class="mobile-menu-link text-primary font-semibold py-3 border-b border-primary/5" href="Contact.html">Contact</a>
+        <button class="bg-accent-pink border border-accent-pink text-white px-5 py-3 rounded-full font-bold text-sm hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn w-full mt-4">Get Started</button>
     </div>
 
     <main class="pt-24 md:pt-32">
-        <!-- Hero Section -->
+        <!-- Hero Section (Home page headline style) -->
         <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden">
-            <div class="max-w-7xl mx-auto text-center mb-12 md:mb-16 reveal-on-scroll">
-                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] text-on-surface mb-6 animate-fade-in-up" style="animation-delay: 100ms;">
-                    Want to explore how EGG Finance can work for your business? <span class="text-secondary">We're here to help.</span>
+            <div class="max-w-7xl mx-auto text-center mb-12 md:mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 animate-fade-in-up" style="animation-delay: 100ms;">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+                    <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Get In Touch</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-on-surface mt-6 mb-4 animate-fade-in-up" style="animation-delay: 200ms;">
+                    Want to explore how EGG Finance can work for your business?
+                    <br/>
+                    <span class="text-secondary/40 italic font-light">We're here to</span>
+                    <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">help.</span>
                 </h1>
+                <p class="text-base md:text-lg text-secondary leading-relaxed max-w-2xl mx-auto font-medium opacity-90 animate-fade-in-up" style="animation-delay: 300ms;">
+                    Fill out the form below and our team will get back to you as soon as possible.
+                </p>
             </div>
         </section>
 
-        <!-- Info Section -->
+        <!-- Info Cards + Map Section -->
         <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
-            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div class="frost-card p-8 md:p-12 rounded-2xl md:rounded-[2rem] border border-primary/20 reveal-on-scroll" style="background: white; border: 1px solid rgba(161, 50, 91, 0.2);">
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-6 md:mb-8">Whether you're:</h2>
+            <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-6 md:gap-8">
+                
+                <!-- Whether you're card -->
+                <div class="frost-card p-8 md:p-10 rounded-2xl md:rounded-[2rem] reveal-on-scroll bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+                    <h2 class="text-xl md:text-2xl font-extrabold text-on-surface mb-6 md:mb-8">Whether you're:</h2>
                     <ul class="space-y-4 md:space-y-5">
-                        <li class="flex items-start gap-3 md:gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">search</span>
-                            <span class="text-base md:text-lg text-secondary font-medium">looking for product information</span>
+                        <li class="flex items-start gap-3 md:gap-4 group">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">search</span>
+                            <span class="text-sm md:text-base text-secondary font-medium">looking for product information</span>
                         </li>
-                        <li class="flex items-start gap-3 md:gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">handshake</span>
-                            <span class="text-base md:text-lg text-secondary font-medium">interested in a partnership</span>
+                        <li class="flex items-start gap-3 md:gap-4 group">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">handshake</span>
+                            <span class="text-sm md:text-base text-secondary font-medium">interested in a partnership</span>
                         </li>
-                        <li class="flex items-start gap-3 md:gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">build</span>
-                            <span class="text-base md:text-lg text-secondary font-medium">experiencing a technical issue</span>
+                        <li class="flex items-start gap-3 md:gap-4 group">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">build</span>
+                            <span class="text-sm md:text-base text-secondary font-medium">experiencing a technical issue</span>
                         </li>
-                        <li class="flex items-start gap-3 md:gap-4">
-                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">info</span>
-                            <span class="text-base md:text-lg text-secondary font-medium">or just want to learn more</span>
+                        <li class="flex items-start gap-3 md:gap-4 group">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5 group-hover:scale-110 transition-transform">info</span>
+                            <span class="text-sm md:text-base text-secondary font-medium">or just want to learn more</span>
                         </li>
                     </ul>
                 </div>
-                <div class="text-center md:text-left reveal-on-scroll" style="transition-delay: 200ms;">
-                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-on-surface leading-tight">
-                        Our specialists are ready to assist you.
-                    </h2>
+
+                <!-- Milan Office Info Card -->
+                <div class="frost-card p-8 md:p-10 rounded-2xl md:rounded-[2rem] reveal-on-scroll bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 relative overflow-hidden" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%); transition-delay: 150ms;">
+                    <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary/5 rounded-full blur-2xl animate-pulse-slow"></div>
+                    <div class="relative z-10">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-5">
+                            <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+                            <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Headquarters</span>
+                        </div>
+                        <h2 class="text-xl md:text-2xl font-extrabold text-on-surface mb-6">Visit us in Milan</h2>
+                        
+                        <div class="space-y-5">
+                            <a href="https://maps.google.com/?q=Via+Monte+Napoleone+8+Milan" target="_blank" class="flex items-start gap-4 group">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">location_on</span>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Address</div>
+                                    <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">Via Monte Napoleone, 8<br/>20121 Milano MI, Italy</div>
+                                </div>
+                            </a>
+                            
+                            <a href="tel:+390212345678" class="flex items-start gap-4 group">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">phone</span>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Phone</div>
+                                    <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">+39 02 1234 5678</div>
+                                </div>
+                            </a>
+                            
+                            <a href="mailto:hello@eggfinance.com" class="flex items-start gap-4 group">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-xl group-hover:text-white transition-colors">mail</span>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Email</div>
+                                    <div class="text-sm md:text-base text-on-surface font-semibold group-hover:text-primary transition-colors">hello@eggfinance.com</div>
+                                </div>
+                            </a>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/10 flex-shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-xl">schedule</span>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-bold text-secondary/60 uppercase tracking-widest mb-1">Hours</div>
+                                    <div class="text-sm md:text-base text-on-surface font-semibold">Mon – Fri: 9:00 – 18:00 CET</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Map -->
+            <div class="max-w-7xl mx-auto mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 200ms;">
+                <div class="frost-card rounded-2xl md:rounded-[2rem] overflow-hidden border border-primary/5 shadow-md map-container" style="background: white;">
+                    <div class="flex items-center justify-between px-6 md:px-8 py-4 border-b border-primary/5">
+                        <div class="flex items-center gap-2">
+                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
+                            <span class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-on-surface">Live Map · Milan, Italy</span>
+                        </div>
+                        <a href="https://maps.google.com/?q=Via+Monte+Napoleone+8+Milan" target="_blank" class="text-xs font-bold text-primary hover:text-accent-pink transition-colors flex items-center gap-1">
+                            Open in Google Maps <span class="material-symbols-outlined text-base">open_in_new</span>
+                        </a>
+                    </div>
+                    <div class="relative w-full h-[300px] md:h-[450px]">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.0671567087!2d9.191383315592!3d45.468498979104!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c6aec3463a5d%3A0x6d5a7e8b6e8b6e8b!2sVia+Monte+Napoleone%2C+8%2C+20121+Milano+MI%2C+Italy!5e0!3m2!1sen!2sit!4v1700000000000!5m2!1sen!2sit"
+                            class="absolute inset-0 w-full h-full"
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade"
+                            title="EGG Finance Milan Office Location">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Form Section -->
-        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
-            <div class="max-w-3xl mx-auto">
-                <p class="text-center text-secondary font-medium mb-8 md:mb-12 reveal-on-scroll">
-                    Fill out the form below and our team will get back to you as soon as possible.
-                </p>
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24 relative overflow-hidden">
+            <div class="absolute inset-0 mesh-gradient opacity-20"></div>
+            <div class="max-w-4xl mx-auto relative z-10">
+                <div class="text-center mb-10 md:mb-14 reveal-on-scroll">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+                        <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Send us a message</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.05] text-on-surface mb-4">
+                        Want to see what <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">benefits</span> you can get?
+                    </h2>
+                    <p class="text-base md:text-lg text-secondary font-medium opacity-90 max-w-xl mx-auto">
+                        Our specialists are ready to assist you.
+                    </p>
+                </div>
                 
-                <div class="frost-card p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2rem] shadow-xl border border-primary/5 reveal-on-scroll" style="background: white; transition-delay: 100ms;">
-                    <h3 class="text-xl md:text-2xl font-extrabold text-on-surface mb-6 md:mb-8">Want to see what benefits you can get?</h3>
-                    
+                <div class="frost-card p-6 md:p-10 lg:p-14 rounded-2xl md:rounded-[2rem] shadow-xl border border-primary/5 reveal-on-scroll bg-white" style="background: white; transition-delay: 100ms;">
                     <form class="space-y-5 md:space-y-6">
                         <div class="grid md:grid-cols-2 gap-4 md:gap-6">
                             <div>
-                                <label class="block text-sm font-bold text-on-surface mb-2">* First Name</label>
-                                <input type="text" placeholder="John" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                                <label class="block text-xs font-bold text-secondary/70 uppercase tracking-widest mb-2">* First Name</label>
+                                <input type="text" placeholder="John" class="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-surface-container-low/50 text-on-surface placeholder-secondary/40 focus:outline-none text-sm md:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-on-surface mb-2">* Last Name</label>
-                                <input type="text" placeholder="Smith" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                                <label class="block text-xs font-bold text-secondary/70 uppercase tracking-widest mb-2">* Last Name</label>
+                                <input type="text" placeholder="Smith" class="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-surface-container-low/50 text-on-surface placeholder-secondary/40 focus:outline-none text-sm md:text-base">
                             </div>
                         </div>
                         
                         <div class="grid md:grid-cols-2 gap-4 md:gap-6">
                             <div>
-                                <label class="block text-sm font-bold text-on-surface mb-2">* Email</label>
-                                <input type="email" placeholder="example@gmail.com" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                                <label class="block text-xs font-bold text-secondary/70 uppercase tracking-widest mb-2">* Email</label>
+                                <input type="email" placeholder="example@gmail.com" class="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-surface-container-low/50 text-on-surface placeholder-secondary/40 focus:outline-none text-sm md:text-base">
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-on-surface mb-2">Company Name</label>
-                                <input type="text" placeholder="Company or Organization" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                                <label class="block text-xs font-bold text-secondary/70 uppercase tracking-widest mb-2">Company Name</label>
+                                <input type="text" placeholder="Company or Organization" class="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-surface-container-low/50 text-on-surface placeholder-secondary/40 focus:outline-none text-sm md:text-base">
                             </div>
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-bold text-on-surface mb-2">Inquiry Type</label>
-                            <select class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface focus:outline-none text-sm md:text-base">
+                            <label class="block text-xs font-bold text-secondary/70 uppercase tracking-widest mb-2">Inquiry Type</label>
+                            <select class="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-surface-container-low/50 text-on-surface focus:outline-none text-sm md:text-base">
                                 <option>General Question</option>
                                 <option>Product Information</option>
                                 <option>Partnership</option>
@@ -288,8 +392,8 @@
                         </div>
                         
                         <div>
-                            <label class="block text-sm font-bold text-on-surface mb-2">Message</label>
-                            <textarea placeholder="Type your message" rows="5" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none resize-none text-sm md:text-base"></textarea>
+                            <label class="block text-xs font-bold text-secondary/70 uppercase tracking-widest mb-2">Message</label>
+                            <textarea placeholder="Type your message" rows="5" class="form-input w-full px-4 py-3 rounded-xl border border-primary/15 bg-surface-container-low/50 text-on-surface placeholder-secondary/40 focus:outline-none resize-none text-sm md:text-base"></textarea>
                         </div>
                         
                         <div class="flex items-start gap-3">
@@ -297,73 +401,38 @@
                             <label for="newsletter" class="text-xs md:text-sm text-secondary font-medium">I would like to receive information about EGG Finance's news, services, newsletters, and events.</label>
                         </div>
                         
-                        <div class="pt-4">
-                            <button type="submit" class="w-full md:w-auto px-8 md:px-12 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary font-bold shadow-lg transition-all active:scale-95 text-base rounded-xl shimmer-btn">Contact</button>
+                        <div class="pt-4 flex flex-col sm:flex-row gap-4 items-center">
+                            <button type="submit" class="px-8 md:px-10 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary font-bold shadow-lg transition-all active:scale-95 text-base rounded-xl shimmer-btn w-full sm:w-auto">Contact</button>
+                            <span class="text-xs text-secondary/60">We'll respond within 1 business day</span>
                         </div>
                     </form>
                 </div>
                 
-                <p class="text-center text-xs md:text-sm text-secondary/60 mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 200ms;">
+                <p class="text-center text-xs text-secondary/60 mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 200ms;">
                     All messages are handled confidentially and in accordance with our data protection and privacy standards.
                 </p>
-                
-                <div class="text-center mt-8 md:mt-12 reveal-on-scroll" style="transition-delay: 300ms;">
-                    <p class="text-lg md:text-xl font-extrabold text-secondary">We'll respond within 1 business day</p>
-                </div>
             </div>
         </section>
 
-        <!-- Partners Section -->
-        <section class="py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white border-y border-primary/5">
+        <!-- Stats Section (Home page style) -->
+        <section class="py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 items-center justify-items-center reveal-on-scroll">
-                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
-                        <div class="text-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">account_balance</span>
-                            </div>
-                            <span class="text-xs md:text-sm font-bold text-secondary">PIÙMUTUICASA</span>
-                        </div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 reveal-on-scroll">
+                    <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">17+</div>
+                        <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Years Expertise</div>
                     </div>
-                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
-                        <div class="text-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">home</span>
-                            </div>
-                            <span class="text-xs md:text-sm font-bold text-secondary">facile.it</span>
-                        </div>
+                    <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">50+</div>
+                        <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Global SaaS Deployments</div>
                     </div>
-                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
-                        <div class="text-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">landscape</span>
-                            </div>
-                            <span class="text-xs md:text-sm font-bold text-secondary">TOSCANO MUTUI</span>
-                        </div>
+                    <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">70+</div>
+                        <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Specialized Staff</div>
                     </div>
-                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
-                        <div class="text-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">verified</span>
-                            </div>
-                            <span class="text-xs md:text-sm font-bold text-secondary">Affida</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
-                        <div class="text-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">payments</span>
-                            </div>
-                            <span class="text-xs md:text-sm font-bold text-secondary">Bibanca</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
-                        <div class="text-center">
-                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">group</span>
-                            </div>
-                            <span class="text-xs md:text-sm font-bold text-secondary">weunit.it</span>
-                        </div>
+                    <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">20+</div>
+                        <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">API Integrations</div>
                     </div>
                 </div>
             </div>
@@ -371,47 +440,66 @@
     </main>
 
     <!-- Dark Footer -->
-    <footer class="w-full bg-[#2a2a2a] text-white pt-12 md:pt-16 pb-8 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-10 md:mb-16">
-                <div class="md:col-span-6 space-y-4 md:space-y-6">
-                    <h3 class="text-2xl md:text-3xl font-extrabold text-accent-pink">EGG finance</h3>
+    <footer class="w-full bg-[#2a2a2a] text-white pt-16 md:pt-24 pb-10 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10 overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent-pink/5 blur-[120px] rounded-full -mr-20 md:-mr-200 -mb-20 md:-mb-200"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-12 md:mb-16">
+                <div class="md:col-span-5 space-y-6 md:space-y-8">
+                    <a href="index.html" class="inline-block text-2xl md:text-3xl font-extrabold text-accent-pink tracking-tighter hover:opacity-80 transition-opacity">EGG finance</a>
                     <p class="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
-                        EGG finance is a technology company founded in 2008 specializing in CRM, Marketing Automation, Data Analytics, and cloud-based AI for the financial sector. Its specific offerings are designed to meet the needs of the credit market at all levels and sizes: from small credit brokerage firms to medium- and large-sized financial agents and banks.
+                        EGG finance is a technology company founded in 2008 specializing in CRM, Marketing Automation, Data Analytics, and cloud-based AI for the financial sector.
                     </p>
+                    <div class="flex gap-3 pt-2">
+                        <!-- Facebook -->
+                        <a href="#" aria-label="Facebook" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+                        </a>
+                        <!-- X (Twitter) -->
+                        <a href="#" aria-label="X" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                        </a>
+                        <!-- LinkedIn -->
+                        <a href="#" aria-label="LinkedIn" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="md:col-span-3 space-y-4 md:space-y-6">
-                    <h4 class="text-sm md:text-base font-bold text-white">Contacts</h4>
-                    <ul class="space-y-3 md:space-y-4">
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-accent-pink text-lg">mail</span>
-                            <a href="mailto:example@gmail.com" class="text-sm md:text-base text-white/70 hover:text-accent-pink transition-colors">example@gmail.com</a>
+                <div class="md:col-span-4 space-y-6 md:space-y-8 md:pl-12">
+                    <h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Contacts</h4>
+                    <ul class="space-y-5">
+                        <li class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+                                <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">mail</span>
+                            </div>
+                            <a href="mailto:hello@eggfinance.com" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">hello@eggfinance.com</a>
                         </li>
-                        <li class="flex items-center gap-3">
-                            <span class="material-symbols-outlined text-accent-pink text-lg">phone</span>
-                            <a href="tel:+37412345678" class="text-sm md:text-base text-white/70 hover:text-accent-pink transition-colors">+ 374 12 345678</a>
+                        <li class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+                                <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">phone</span>
+                            </div>
+                            <a href="tel:+390212345678" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">+39 02 1234 5678</a>
+                        </li>
+                        <li class="flex items-center gap-4 group cursor-pointer">
+                            <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+                                <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">location_on</span>
+                            </div>
+                            <span class="text-sm md:text-base text-white/70 font-semibold">Via Monte Napoleone, 8<br/>20121 Milano, Italy</span>
                         </li>
                     </ul>
                 </div>
-                <div class="md:col-span-3 space-y-4 md:space-y-6">
-                    <h4 class="text-sm md:text-base font-bold text-white">Follow us on:</h4>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-accent-pink transition-all">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-accent-pink transition-all">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-                        </a>
-                        <a href="#" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-accent-pink transition-all">
-                            <svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
-                        </a>
-                    </div>
+                <div class="md:col-span-3 space-y-6 md:space-y-8">
+                    <h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Privacy Policy</a></li>
+                        <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Terms and Conditions</a></li>
+                        <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Security</a></li>
+                    </ul>
                 </div>
             </div>
             
             <div class="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-xs md:text-sm text-white/50">© 2026 EGG finance</p>
-                <div class="flex gap-4 md:gap-6">
+                <p class="text-xs md:text-sm text-white/50">© 2026 EGG finance. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-4 md:gap-6">
                     <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Privacy Policy</a>
                     <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Terms and Conditions</a>
                 </div>
