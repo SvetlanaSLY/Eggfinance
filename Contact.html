@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html class="light" lang="en" style="">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        try {
+            tailwind.config = {
+                darkMode: "class",
+                theme: {
+                    extend: {
+                        colors: {
+                            "on-error": "#ffffff",
+                            "outline-variant": "#dcc0c5",
+                            "tertiary-container": "#66768d",
+                            "tertiary-fixed": "#d3e4fe",
+                            "surface-variant": "#e1e3e4",
+                            "primary-fixed": "#ffd9e1",
+                            "on-primary-fixed-variant": "#851b46",
+                            "secondary-fixed": "#d8e3fb",
+                            "on-secondary-fixed-variant": "#3c475a",
+                            "on-secondary": "#ffffff",
+                            "primary": "#a1325b",
+                            "on-tertiary-fixed": "#0b1c30",
+                            "surface-tint": "#a5345d",
+                            "on-primary-container": "#fffbff",
+                            "on-tertiary-container": "#fdfcff",
+                            "on-tertiary": "#ffffff",
+                            "on-error-container": "#93000a",
+                            "on-background": "#191c1d",
+                            "inverse-surface": "#2e3132",
+                            "surface-container": "#edeeef",
+                            "outline": "#897176",
+                            "inverse-primary": "#ffb1c5",
+                            "tertiary": "#4d5d73",
+                            "on-secondary-container": "#586377",
+                            "on-primary-fixed": "#3f001b",
+                            "primary-container": "#c14b73",
+                            "surface": "#f8f9fa",
+                            "surface-dim": "#d9dadb",
+                            "on-secondary-fixed": "#111c2d",
+                            "tertiary-fixed-dim": "#b7c8e1",
+                            "on-tertiary-fixed-variant": "#38485d",
+                            "surface-container-low": "#f3f4f5",
+                            "secondary-container": "#d5e0f8",
+                            "surface-bright": "#f8f9fa",
+                            "secondary-fixed-dim": "#bcc7de",
+                            "surface-container-highest": "#e1e3e4",
+                            "inverse-on-surface": "#f0f1f2",
+                            "error-container": "#ffdad6",
+                            "surface-container-lowest": "#ffffff",
+                            "error": "#ba1a1a",
+                            "on-primary": "#ffffff",
+                            "on-surface-variant": "#554146",
+                            "on-surface": "#191c1d",
+                            "background": "#f8f9fa",
+                            "surface-container-high": "#e7e8e9",
+                            "secondary": "#545f73",
+                            "primary-fixed-dim": "#ffb1c5",
+                            "accent-pink": "#e0638c",
+                        },
+                        fontFamily: {
+                            sans: ['Plus Jakarta Sans', 'sans-serif'],
+                            'headline-md': ['Plus Jakarta Sans'],
+                            'label-md': ['Plus Jakarta Sans'],
+                            'display-lg': ['Plus Jakarta Sans'],
+                            'body-lg': ['Plus Jakarta Sans'],
+                            'body-md': ['Plus Jakarta Sans'],
+                        },
+                        fontSize: {
+                            'display-lg': ['40px', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '700' }],
+                            'headline-md': ['20px', { lineHeight: '1.3', fontWeight: '600' }],
+                            'label-md': ['13px', { lineHeight: '1.2', letterSpacing: '0.05em', fontWeight: '600' }],
+                            'label-sm': ['11px', { lineHeight: '1.2', fontWeight: '500' }],
+                            'body-lg': ['16px', { lineHeight: '1.6', fontWeight: '400' }],
+                            'body-md': ['14px', { lineHeight: '1.5', fontWeight: '400' }],
+                        },
+                        spacing: {
+                            'margin-desktop': '40px',
+                            'gutter': '24px',
+                            'xl': '64px',
+                            'md': '20px',
+                            'base': '8px',
+                            'sm': '12px',
+                            'lg': '40px',
+                        },
+                        borderRadius: {
+                            'DEFAULT': '0.25rem',
+                            'lg': '0.5rem',
+                            'xl': '0.75rem',
+                            'eight': '8px',
+                            'full': '9999px'
+                        },
+                        animation: {
+                            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                            'float': 'float 6s ease-in-out infinite',
+                            'scroll': 'scroll 15s linear infinite',
+                            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                            'shimmer': 'shimmer 2.5s infinite',
+                        },
+                        keyframes: {
+                            float: {
+                                '0%, 100%': { transform: 'translateY(0px)' },
+                                '50%': { transform: 'translateY(-15px)' },
+                            },
+                            scroll: {
+                                '0%': { transform: 'translateX(0)' },
+                                '100%': { transform: 'translateX(-50%)' }
+                            },
+                            fadeInUp: {
+                                '0%': { opacity: '0', transform: 'translateY(30px)' },
+                                '100%': { opacity: '1', transform: 'translateY(0)' }
+                            },
+                            shimmer: {
+                                '100%': { transform: 'translateX(100%)' }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (_e) {}
+    </script>
+    <style>
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .reveal-on-scroll.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer-btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            transition: 0.5s;
+        }
+        .shimmer-btn:hover::after {
+            left: 150%;
+        }
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #a1325b;
+            box-shadow: 0 0 0 3px rgba(161, 50, 91, 0.1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal-on-scroll, .animate-float, .animate-pulse-slow, .animate-scroll, .shimmer-btn::after, .animate-fade-in-up, .hover\:scale-105 {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-primary/5 flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-margin-desktop py-3 md:py-2.5 max-w-full mx-auto transition-all duration-500">
+        <div class="flex items-center gap-4 md:gap-6">
+            <a href="index.html" class="font-headline-md text-xl font-extrabold text-primary tracking-tighter hover:opacity-80 transition-opacity">EGG Finance</a>
+            <div class="hidden md:flex items-center gap-6">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html">Home</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html#features">Features</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="Editions.html">Editions</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="index.html#resources">Success Stories</a>
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="team">About</a>
+            </div>
+        </div>
+        <div class="flex items-center gap-3 md:gap-4">
+            <button class="material-symbols-outlined text-secondary hover:text-primary transition-colors text-xl hidden md:block">language</button>
+            <button class="bg-accent-pink border border-accent-pink text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-bold text-xs hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn">Contact</button>
+            <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-secondary hover:text-primary transition-colors text-2xl">menu</button>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 top-[60px] z-40 bg-white/95 backdrop-blur-xl md:hidden flex flex-col p-6 gap-4 border-t border-primary/5 shadow-lg overflow-y-auto">
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html">Home</a>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html#features">Features</a>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="Editions.html">Editions</a>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="index.html#resources">Success Stories</a>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="team">About</a>
+        <button class="bg-accent-pink border border-accent-pink text-white px-5 py-3 rounded-full font-bold text-sm hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn w-full mt-4">Contact</button>
+    </div>
+
+    <main class="pt-24 md:pt-32">
+        <!-- Hero Section -->
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden">
+            <div class="max-w-7xl mx-auto text-center mb-12 md:mb-16 reveal-on-scroll">
+                <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.1] text-on-surface mb-6 animate-fade-in-up" style="animation-delay: 100ms;">
+                    Want to explore how EGG Finance can work for your business? <span class="text-secondary">We're here to help.</span>
+                </h1>
+            </div>
+        </section>
+
+        <!-- Info Section -->
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
+            <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="frost-card p-8 md:p-12 rounded-2xl md:rounded-[2rem] border border-primary/20 reveal-on-scroll" style="background: white; border: 1px solid rgba(161, 50, 91, 0.2);">
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-on-surface mb-6 md:mb-8">Whether you're:</h2>
+                    <ul class="space-y-4 md:space-y-5">
+                        <li class="flex items-start gap-3 md:gap-4">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">search</span>
+                            <span class="text-base md:text-lg text-secondary font-medium">looking for product information</span>
+                        </li>
+                        <li class="flex items-start gap-3 md:gap-4">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">handshake</span>
+                            <span class="text-base md:text-lg text-secondary font-medium">interested in a partnership</span>
+                        </li>
+                        <li class="flex items-start gap-3 md:gap-4">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">build</span>
+                            <span class="text-base md:text-lg text-secondary font-medium">experiencing a technical issue</span>
+                        </li>
+                        <li class="flex items-start gap-3 md:gap-4">
+                            <span class="material-symbols-outlined text-primary text-xl md:text-2xl mt-0.5">info</span>
+                            <span class="text-base md:text-lg text-secondary font-medium">or just want to learn more</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="text-center md:text-left reveal-on-scroll" style="transition-delay: 200ms;">
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-on-surface leading-tight">
+                        Our specialists are ready to assist you.
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form Section -->
+        <section class="px-4 sm:px-6 md:px-8 lg:px-margin-desktop mb-16 md:mb-24">
+            <div class="max-w-3xl mx-auto">
+                <p class="text-center text-secondary font-medium mb-8 md:mb-12 reveal-on-scroll">
+                    Fill out the form below and our team will get back to you as soon as possible.
+                </p>
+                
+                <div class="frost-card p-6 md:p-10 lg:p-12 rounded-2xl md:rounded-[2rem] shadow-xl border border-primary/5 reveal-on-scroll" style="background: white; transition-delay: 100ms;">
+                    <h3 class="text-xl md:text-2xl font-extrabold text-on-surface mb-6 md:mb-8">Want to see what benefits you can get?</h3>
+                    
+                    <form class="space-y-5 md:space-y-6">
+                        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-on-surface mb-2">* First Name</label>
+                                <input type="text" placeholder="John" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-on-surface mb-2">* Last Name</label>
+                                <input type="text" placeholder="Smith" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                            </div>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
+                            <div>
+                                <label class="block text-sm font-bold text-on-surface mb-2">* Email</label>
+                                <input type="email" placeholder="example@gmail.com" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-on-surface mb-2">Company Name</label>
+                                <input type="text" placeholder="Company or Organization" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none text-sm md:text-base">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-on-surface mb-2">Inquiry Type</label>
+                            <select class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface focus:outline-none text-sm md:text-base">
+                                <option>General Question</option>
+                                <option>Product Information</option>
+                                <option>Partnership</option>
+                                <option>Technical Support</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-on-surface mb-2">Message</label>
+                            <textarea placeholder="Type your message" rows="5" class="form-input w-full px-4 py-3 rounded-xl border border-primary/20 bg-white text-on-surface placeholder-secondary/50 focus:outline-none resize-none text-sm md:text-base"></textarea>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <input type="checkbox" id="newsletter" class="mt-1 w-4 h-4 rounded border-primary/20 text-primary focus:ring-primary">
+                            <label for="newsletter" class="text-xs md:text-sm text-secondary font-medium">I would like to receive information about EGG Finance's news, services, newsletters, and events.</label>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit" class="w-full md:w-auto px-8 md:px-12 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary font-bold shadow-lg transition-all active:scale-95 text-base rounded-xl shimmer-btn">Contact</button>
+                        </div>
+                    </form>
+                </div>
+                
+                <p class="text-center text-xs md:text-sm text-secondary/60 mt-6 md:mt-8 reveal-on-scroll" style="transition-delay: 200ms;">
+                    All messages are handled confidentially and in accordance with our data protection and privacy standards.
+                </p>
+                
+                <div class="text-center mt-8 md:mt-12 reveal-on-scroll" style="transition-delay: 300ms;">
+                    <p class="text-lg md:text-xl font-extrabold text-secondary">We'll respond within 1 business day</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partners Section -->
+        <section class="py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white border-y border-primary/5">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 items-center justify-items-center reveal-on-scroll">
+                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">account_balance</span>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-secondary">PIÙMUTUICASA</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">home</span>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-secondary">facile.it</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">landscape</span>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-secondary">TOSCANO MUTUI</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">verified</span>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-secondary">Affida</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">payments</span>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-secondary">Bibanca</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center opacity-60 hover:opacity-100 transition-opacity">
+                        <div class="text-center">
+                            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto mb-2 bg-primary/10 rounded-lg flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-3xl md:text-4xl">group</span>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-secondary">weunit.it</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Dark Footer -->
+    <footer class="w-full bg-[#2a2a2a] text-white pt-12 md:pt-16 pb-8 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-10 md:mb-16">
+                <div class="md:col-span-6 space-y-4 md:space-y-6">
+                    <h3 class="text-2xl md:text-3xl font-extrabold text-accent-pink">EGG finance</h3>
+                    <p class="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
+                        EGG finance is a technology company founded in 2008 specializing in CRM, Marketing Automation, Data Analytics, and cloud-based AI for the financial sector. Its specific offerings are designed to meet the needs of the credit market at all levels and sizes: from small credit brokerage firms to medium- and large-sized financial agents and banks.
+                    </p>
+                </div>
+                <div class="md:col-span-3 space-y-4 md:space-y-6">
+                    <h4 class="text-sm md:text-base font-bold text-white">Contacts</h4>
+                    <ul class="space-y-3 md:space-y-4">
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-pink text-lg">mail</span>
+                            <a href="mailto:example@gmail.com" class="text-sm md:text-base text-white/70 hover:text-accent-pink transition-colors">example@gmail.com</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-accent-pink text-lg">phone</span>
+                            <a href="tel:+37412345678" class="text-sm md:text-base text-white/70 hover:text-accent-pink transition-colors">+ 374 12 345678</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:col-span-3 space-y-4 md:space-y-6">
+                    <h4 class="text-sm md:text-base font-bold text-white">Follow us on:</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-accent-pink transition-all">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-accent-pink transition-all">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-white/10 flex items-center justify-center hover:bg-accent-pink transition-all">
+                            <svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs md:text-sm text-white/50">© 2026 EGG finance</p>
+                <div class="flex gap-4 md:gap-6">
+                    <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Terms and Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuBtn.textContent.trim();
+                mobileMenuBtn.textContent = icon === 'menu' ? 'close' : 'menu';
+            });
+
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuBtn.textContent = 'menu';
+                });
+            });
+        }
+
+        // Intersection Observer for Reveal Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission handler
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you within 1 business day.');
+        });
+    </script>
+</body>
+</html>
