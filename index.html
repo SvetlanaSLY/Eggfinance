@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html class="light" lang="en" style="">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <link href="https://fonts.googleapis.com" rel="preconnect"/>
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
         try {
             tailwind.config = {
                 darkMode: "class",
@@ -125,7 +125,7 @@
             }
         } catch (_e) {}
     </script>
-    <style>
+<style>
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(30px);
@@ -164,34 +164,34 @@
     </style>
 </head>
 <body class="antialiased overflow-x-hidden bg-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
-    <!-- Grid Background -->
-    <!-- STITCH_SHADER_START:ANIMATION_98 class="fixed inset-0 w-full h-full -z-10 opacity-40" -->
-    <div class="fixed inset-0 w-full h-full -z-10 opacity-40" style="display:block;">
-        <canvas id="shader-canvas-ANIMATION_98" style="display:block;width:100%;height:100%"></canvas>
-        <script>
-            (function() {
-              const canvas = document.getElementById('shader-canvas-ANIMATION_98');
-              function syncSize() {
-                const w = canvas.clientWidth  || 1280;
-                const h = canvas.clientHeight || 720;
-                if (canvas.width !== w || canvas.height !== h) {
-                  canvas.width  = w;
-                  canvas.height = h;
-                }
-              }
-              if (typeof ResizeObserver !== 'undefined') {
-                new ResizeObserver(syncSize).observe(canvas);
-              }
-              syncSize();
-              const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-              if (!gl) return;
-              const vs = `attribute vec2 a_position;
+<!-- Grid Background -->
+<!-- STITCH_SHADER_START:ANIMATION_98 class="fixed inset-0 w-full h-full -z-10 opacity-40" -->
+<div class="fixed inset-0 w-full h-full -z-10 opacity-40" style="display:block;">
+<canvas id="shader-canvas-ANIMATION_98" style="display:block;width:100%;height:100%"></canvas>
+<script>
+(function() {
+  const canvas = document.getElementById('shader-canvas-ANIMATION_98');
+  function syncSize() {
+    const w = canvas.clientWidth  || 1280;
+    const h = canvas.clientHeight || 720;
+    if (canvas.width !== w || canvas.height !== h) {
+      canvas.width  = w;
+      canvas.height = h;
+    }
+  }
+  if (typeof ResizeObserver !== 'undefined') {
+    new ResizeObserver(syncSize).observe(canvas);
+  }
+  syncSize();
+  const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+  if (!gl) return;
+  const vs = `attribute vec2 a_position;
 varying vec2 v_texCoord;
 void main() {
   v_texCoord = a_position * 0.5 + 0.5;
   gl_Position = vec4(a_position, 0.0, 1.0);
 }`;
-              const fs = `precision highp float;
+  const fs = `precision highp float;
 uniform float u_time;
 uniform vec2 u_resolution;
 varying vec2 v_texCoord;
@@ -230,575 +230,547 @@ void main() {
     finalColor = mix(finalColor, white, n2 * 0.03);
     gl_FragColor = vec4(finalColor, 1.0);
 }`;
-              function cs(type, src) {
-                const s = gl.createShader(type);
-                gl.shaderSource(s, src);
-                gl.compileShader(s);
-                return s;
-              }
-              const prog = gl.createProgram();
-              gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
-              gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
-              gl.linkProgram(prog);
-              gl.useProgram(prog);
-              const buf = gl.createBuffer();
-              gl.bindBuffer(gl.ARRAY_BUFFER, buf);
-              gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-              const pos = gl.getAttribLocation(prog, 'a_position');
-              gl.enableVertexAttribArray(pos);
-              gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-              const uTime = gl.getUniformLocation(prog, 'u_time');
-              const uRes = gl.getUniformLocation(prog, 'u_resolution');
-              const uMouse = gl.getUniformLocation(prog, 'u_mouse');
-              let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
-              window.addEventListener('mousemove', (event) => {
-                const rect = canvas.getBoundingClientRect();
-                if (rect.width && rect.height) {
-                  const nx = (event.clientX - rect.left) / rect.width;
-                  const ny = 1.0 - (event.clientY - rect.top) / rect.height;
-                  mouse.x = nx * canvas.width;
-                  mouse.y = ny * canvas.height;
-                }
-              });
-              function render(t) {
-                if (typeof ResizeObserver === 'undefined') syncSize();
-                gl.viewport(0, 0, canvas.width, canvas.height);
-                if (uTime) gl.uniform1f(uTime, t * 0.001);
-                if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
-                if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
-                gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-                requestAnimationFrame(render);
-              }
-              render(0);
-            })();
-        </script>
-    </div>
-    <!-- STITCH_SHADER_END:ANIMATION_98 -->
-    <div class="fixed inset-0 grid-pattern pointer-events-none z-0"></div>
-    
-    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-primary/5 flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-margin-desktop py-3 md:py-2.5 max-w-full mx-auto transition-all duration-500">
-        <div class="flex items-center gap-4 md:gap-6">
-            <span class="font-headline-md text-xl font-extrabold text-primary tracking-tighter">EGG Finance</span>
-            <div class="hidden md:flex items-center gap-6">
-                <a class="hover:text-accent-pink transition-colors font-label-md text-xs border-primary font-semibold text-on-surface-variant border-b-2" href="#features">Home</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="#functionality">Functionality</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="Editions.html">Editions</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="#case studies">Case Studies</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="team">Team</a>
-                <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="Contact.html">Contact</a>
-            </div>
-        </div>
-        <div class="flex items-center gap-3 md:gap-4">
-            <button class="material-symbols-outlined text-secondary hover:text-primary transition-colors text-xl hidden md:block">search</button>
-            <button class="bg-accent-pink border border-accent-pink text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-bold text-xs hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn">Get Started</button>
-            <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-secondary hover:text-primary transition-colors text-2xl">menu</button>
-        </div>
-    </nav>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden fixed inset-0 top-[60px] z-40 bg-white/95 backdrop-blur-xl md:hidden flex flex-col p-6 gap-4 border-t border-primary/5 shadow-lg overflow-y-auto">
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="#features">Home</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="#functionality">Functionality</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="Editions.html">Editions</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="#case studies">Case Studies</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="team">Team</a>
-        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3" href="Contact.html">Contact</a>
-        <button class="bg-accent-pink border border-accent-pink text-white px-5 py-3 rounded-full font-bold text-sm hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn w-full mt-4">Get Started</button>
-    </div>
-
-    <header class="relative pt-24 pb-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop hero-glow overflow-hidden min-h-[60vh] lg:min-h-[80vh] flex items-center">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 grid-cols-1">
-            <div class="space-y-6 text-center lg:text-left">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 animate-fade-in-up" style="animation-delay: 100ms;">
-                    <span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
-                    <span class="text-primary font-bold text-[10px] uppercase tracking-widest">Trusted by 50+ Global Institutions</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-on-surface animate-fade-in-up" style="animation-delay: 200ms;">
-                    The Intelligent CRM for <br/>
-                    <span class="text-secondary/30 italic font-light">Modern</span> <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Finance</span>
-                </h1>
-                <p class="text-base md:text-lg text-secondary leading-relaxed max-w-lg font-medium opacity-90 mx-auto lg:mx-0 animate-fade-in-up" style="animation-delay: 300ms;">
-                    Empower your team with a high-performance SaaS infrastructure designed for deep relationship management and high-precision automation.
-                </p>
-                <div class="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 400ms;">
-                    <a class="px-6 md:px-8 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95 text-base shimmer-btn" href="#">Start Free Trial <span class="material-symbols-outlined text-lg">arrow_right_alt</span></a>
-                    <a class="px-6 md:px-8 py-3 md:py-4 text-on-surface rounded-xl font-bold hover:bg-white transition-all active:scale-95 bg-white/60 text-base hover:scale-105 hover:shadow-lg duration-300 shadow-sm hover:border-primary text-center" href="#" style="border: 2px solid rgba(161, 50, 91, 0.15);">View Whitepaper</a>
-                </div>
-            </div>
-            <div class="relative group animate-fade-in-up mt-8 lg:mt-0" style="animation-delay: 500ms;">
-                <div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full opacity-30 animate-pulse-slow"></div>
-                <div class="relative frost-card p-2 rounded-2xl md:rounded-[2rem] border-white/60 animate-float shadow-2xl bg-white/80" style="background: radial-gradient(circle at top right, rgba(224, 99, 140, 0.05) 0%, rgba(248, 249, 250, 0.98) 70%); border: 1px solid rgba(255, 255, 255, 0.6);">
-                    <img alt="High-fidelity 3D financial CRM dashboard visualization" class="rounded-xl md:rounded-[1.75rem] w-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuZjRGSuLvXuBrxSAFMp88xGhhq-yZSAj_MoPpGYKxfgYw3utlySJ9sN-2yYpPLD7OaH0BK_AOYqQZF9nX1HR_9C5-9VB5pXYj3s19juK9vYYmP1lxnP4QqJzBCzPUfRy2daOWqRwBmXCgCYE3Gz6Gwfq4_xZZXne3YvNkWHh5eG0Y789uC87y7ZIrjT672EXIUtVWWWzjvCIieHrIPF9xl5R2r0VR0EHdUwv_C5ONMwsTBQAR_-KpSQA"/>
-                    
-                    <div class="frost-card p-4 md:p-6 rounded-2xl shadow-xl bg-white/90 border-primary/10 mb-4 md:absolute md:-bottom-6 md:-left-6 md:mb-0" style="background: white; border: 1px solid rgba(161, 50, 91, 0.1);">
-                        <div class="text-[10px] md:text-xs text-secondary/60 mb-1 font-bold uppercase tracking-widest">Total Assets Locked</div>
-                        <div class="text-2xl md:text-3xl font-extrabold text-primary">$4.2B+</div>
-                    </div>
-                    
-                    <div class="frost-card p-3 md:p-4 rounded-2xl shadow-xl bg-white/90 border-primary/10 md:absolute md:-top-6 md:-right-6" style="background: white; border: 1px solid rgba(161, 50, 91, 0.1);">
-                        <div class="flex items-center gap-2">
-                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
-                            <span class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-on-surface">System Operational</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <section class="py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10 -mt-4 md:-mt-8">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 reveal-on-scroll">
-                <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
-                    <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">17+</div>
-                    <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Years Expertise</div>
-                </div>
-                <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
-                    <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">50+</div>
-                    <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Global SaaS Deployments</div>
-                </div>
-                <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
-                    <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">70+</div>
-                    <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Specialized Staff</div>
-                </div>
-                <div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
-                    <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">20+</div>
-                    <div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">API Integrations</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-12 md:py-20 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="features">
-        <div class="absolute inset-0 mesh-gradient opacity-40"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-10 md:mb-16 reveal-on-scroll">
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-4">
-                    Powerful <span class="bg-gradient-to-r from-primary to-accent-pink bg-clip-text text-transparent">Core Features</span>
-                </h2>
-                <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent-pink mx-auto rounded-full mb-6"></div>
-                <p class="text-secondary max-w-xl mx-auto text-base md:text-lg font-medium opacity-80">Next-generation tools engineered for high-frequency financial demands.</p>
-            </div>
-            <div class="grid md:grid-cols-3 gap-6 md:gap-8 grid-cols-1">
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 ease-in-out shadow-md border border-primary/5" style="background: white; transition-delay: 100ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl">edit_document</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface">Digital Signature + AI Docs</h3>
-                    <p class="text-secondary text-sm leading-relaxed font-medium opacity-80">Streamline your workflow with automated document processing and secure digital verification.</p>
-                </div>
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 ease-in-out shadow-md border border-primary/5" style="background: white; transition-delay: 200ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl">bolt</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface">Marketing Automation</h3>
-                    <p class="text-secondary text-sm leading-relaxed font-medium opacity-80">Convert prospects faster with intelligent lead scoring and automated campaigns.</p>
-                </div>
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 ease-in-out shadow-md border border-primary/5" style="background: white; transition-delay: 300ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl">dashboard_customize</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface">Custom Dynamic UI</h3>
-                    <p class="text-secondary text-sm leading-relaxed font-medium opacity-80">Tailor the platform to your specific needs with flexible data structures and interfaces.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-surface-container-low/20 relative border-y border-primary/5 mesh-gradient" id="solutions">
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="mb-10 md:mb-16 text-center md:text-left reveal-on-scroll">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/40 border border-secondary/20 mb-6">
-                    <span class="w-2 h-2 rounded-full bg-primary animate-pulse-slow"></span>
-                    <span class="text-secondary font-extrabold text-[10px] uppercase tracking-widest">Our Competencies</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl lg:text-6xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
-                    Precision Engineering for <br/><span class="bg-gradient-to-r from-primary to-accent-pink bg-clip-text text-transparent">Financial Excellence</span>
-                </h2>
-                <p class="text-base md:text-lg text-secondary max-w-xl font-medium opacity-80">
-                    Comprehensive solutions designed specifically for the unique demands of the modern financial industry.
-                </p>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 100ms;">
-                    <div class="flex flex-col gap-2 relative z-10 flex-grow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">groups</span>
-                            <h3 class="text-xl font-bold text-on-surface">Sales Network</h3>
-                        </div>
-                        <p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Track performance and customer data with a CRM designed for high-stakes environments.</p>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Learn more <span class="material-symbols-outlined text-base">arrow_forward</span></div>
-                    </div>
-                </div>
-                <div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 150ms;">
-                    <div class="flex flex-col gap-2 relative z-10 flex-grow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">payments</span>
-                            <h3 class="text-xl font-bold text-on-surface">Finance and Credit</h3>
-                        </div>
-                        <p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Fast quoting in just a few clicks. Reduce friction in digital credit approval.</p>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Explore engine <span class="material-symbols-outlined text-base">arrow_forward</span></div>
-                    </div>
-                </div>
-                <div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 200ms;">
-                    <div class="flex flex-col gap-2 relative z-10 flex-grow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">description</span>
-                            <h3 class="text-xl font-bold text-on-surface">BackOffice</h3>
-                        </div>
-                        <p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Simplified management of applications via intelligent automation systems.</p>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">View automation <span class="material-symbols-outlined text-base">arrow_forward</span></div>
-                    </div>
-                </div>
-                <div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 250ms;">
-                    <div class="flex flex-col gap-2 relative z-10 flex-grow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">verified_user</span>
-                            <h3 class="text-xl font-bold text-on-surface">Compliance</h3>
-                        </div>
-                        <p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Secure risk management compliant with global audit and regulatory standards.</p>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Read security <span class="material-symbols-outlined text-base">arrow_forward</span></div>
-                    </div>
-                </div>
-                <div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 300ms;">
-                    <div class="flex flex-col gap-2 relative z-10 flex-grow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">devices</span>
-                            <h3 class="text-xl font-bold text-on-surface">Mobile First</h3>
-                        </div>
-                        <p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Work and quote on the go with natively optimized high-performance apps.</p>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Download apps <span class="material-symbols-outlined text-base">arrow_forward</span></div>
-                    </div>
-                </div>
-                <div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 350ms;">
-                    <div class="flex flex-col gap-2 relative z-10 flex-grow">
-                        <div class="flex items-center gap-4 mb-4">
-                            <span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">insights</span>
-                            <h3 class="text-xl font-bold text-on-surface">Marketing AI</h3>
-                        </div>
-                        <p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Targeted campaigns and higher ROI integrated directly into your workflow.</p>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Analyze ROI <span class="material-symbols-outlined text-base">arrow_forward</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="resources">
-        <div class="absolute inset-0 mesh-gradient opacity-20"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <header class="mb-10 md:mb-16 text-center md:text-left reveal-on-scroll">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5">
-                    <span class="w-2 h-2 rounded-full bg-accent-pink animate-pulse"></span>
-                    <span class="text-primary font-extrabold text-[10px] uppercase tracking-widest">Success Stories</span>
-                </div>
-                <h2 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-on-surface mb-6">Case <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Studies</span></h2>
-                <p class="text-base md:text-lg text-secondary max-w-xl font-medium opacity-80">How leading institutions are redefining operations through EGG.</p>
-            </header>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
-                <div class="lg:col-span-7 group reveal-on-scroll">
-                    <div class="frost-card p-8 md:p-12 lg:p-16 rounded-2xl md:rounded-[3rem] h-full flex flex-col justify-between border-primary/10 shadow-xl relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500">
-                        <div class="relative z-10">
-                            <div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-2xl bg-primary text-white mb-6 md:mb-8 shadow-lg shadow-primary/20">
-                                <span class="font-extrabold text-2xl md:text-3xl">F</span>
-                            </div>
-                            <h3 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 md:mb-6 text-on-surface leading-tight">Optimizing 12M+ Monthly User Transactions</h3>
-                            <p class="text-base md:text-lg text-secondary leading-relaxed font-medium opacity-90 mb-6 md:mb-8 max-w-lg">How the leading Italian price comparison engine optimized payment reconciliation using EGG's automated core.</p>
-                            <div class="flex flex-wrap gap-3 mb-8 md:mb-10">
-                                <span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/10">Enterprise Scale</span>
-                                <span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/10">Backend Logic</span>
-                            </div>
-                        </div>
-                        <div class="relative z-10">
-                            <a class="inline-flex items-center gap-2.5 px-6 md:px-8 py-3 md:py-4 bg-primary text-white rounded-2xl font-bold hover:bg-accent-pink transition-all active:scale-95 shadow-lg shadow-primary/20 text-base shimmer-btn" href="#">Read Case Study <span class="material-symbols-outlined text-xl">arrow_forward</span></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="lg:col-span-5 space-y-6 md:space-y-8">
-                    <div class="group reveal-on-scroll" style="transition-delay: 200ms;">
-                        <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border-primary/5 shadow-md hover:shadow-2xl transition-all duration-500 bg-white" style="background: white;">
-                            <div class="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-secondary-container/60 text-secondary mb-6 md:mb-8 border border-secondary/20">
-                                <span class="font-extrabold text-xl md:text-2xl">B</span>
-                            </div>
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Modernizing Legacy Banking</h3>
-                            <p class="text-secondary text-sm leading-relaxed font-medium opacity-80 mb-6 md:mb-8">Streamlining Bibanca's systems with high-fidelity data extraction.</p>
-                            <a class="inline-flex items-center gap-2 text-primary font-bold text-base group-hover:gap-4 transition-all" href="#">View Case Study <span class="material-symbols-outlined text-lg">east</span></a>
-                        </div>
-                    </div>
-                    <div class="group reveal-on-scroll" style="transition-delay: 400ms;">
-                        <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border-primary/5 shadow-md hover:shadow-2xl transition-all duration-500 bg-white" style="background: white;">
-                            <div class="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 md:mb-8 border border-primary/20">
-                                <span class="font-extrabold text-xl md:text-2xl">A</span>
-                            </div>
-                            <h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Digital Mortgage Shift</h3>
-                            <p class="text-secondary text-sm leading-relaxed font-medium opacity-80 mb-6 md:mb-8">Empowering brokers with a unified interface for faster approvals.</p>
-                            <a class="inline-flex items-center gap-2 text-primary font-bold text-base group-hover:gap-4 transition-all" href="#">View Case Study <span class="material-symbols-outlined text-lg">east</span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white relative overflow-hidden border-t border-primary/5">
-        <div class="absolute inset-0 mesh-gradient opacity-15"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="mb-10 md:mb-16 text-center reveal-on-scroll">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 mb-5">
-                    <span class="text-primary font-extrabold text-[10px] uppercase tracking-widest">Global Network</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-3">Institutional <span class="text-primary">Partners</span></h2>
-                <p class="text-secondary opacity-70 font-medium text-sm">Powering the next generation of financial leaders.</p>
-            </div>
-            <div class="carousel-container relative overflow-hidden reveal-on-scroll px-2 md:px-4">
-                <div class="flex gap-4 md:gap-10 animate-scroll whitespace-nowrap py-6 md:py-8 px-2 md:px-4">
-                    <div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20 shadow-sm">
-                                <span class="material-symbols-outlined text-[#f2a154] text-xl md:text-2xl">currency_bitcoin</span>
-                            </div>
-                            <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
-                        </div>
-                    </div>
-                    <div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#a1325b]/10 flex items-center justify-center border border-[#a1325b]/20 shadow-sm">
-                                <span class="material-symbols-outlined text-[#a1325b] text-xl md:text-2xl">account_balance_wallet</span>
-                            </div>
-                            <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">GOLD<span class="text-[#a1325b]">VAULT</span></span>
-                        </div>
-                    </div>
-                    <div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#a855f7]/10 flex items-center justify-center border border-[#a855f7]/20 shadow-sm">
-                                <span class="material-symbols-outlined text-[#a855f7] text-xl md:text-2xl">hub</span>
-                            </div>
-                            <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">ETHER<span class="text-[#a855f7]">NET</span></span>
-                        </div>
-                    </div>
-                    <div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-accent-pink/10 flex items-center justify-center border border-accent-pink/20 shadow-sm">
-                                <span class="material-symbols-outlined text-accent-pink text-xl md:text-2xl">monitoring</span>
-                            </div>
-                            <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">PULSE<span class="text-accent-pink">CORE</span></span>
-                        </div>
-                    </div>
-                    <div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#4ade80]/10 flex items-center justify-center border border-[#4ade80]/20 shadow-sm">
-                                <span class="material-symbols-outlined text-[#4ade80] text-xl md:text-2xl">shield_with_heart</span>
-                            </div>
-                            <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">SAFE<span class="text-[#4ade80]">GUARD</span></span>
-                        </div>
-                    </div>
-                    <!-- Duplicate for loop -->
-                    <div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
-                        <div class="flex items-center gap-4 md:gap-5">
-                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20 shadow-sm">
-                                <span class="material-symbols-outlined text-[#f2a154] text-xl md:text-2xl">currency_bitcoin</span>
-                            </div>
-                            <span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="cta">
-        <div class="absolute inset-0 mesh-gradient opacity-50"></div>
-        <div class="max-w-5xl mx-auto relative z-10 text-center reveal-on-scroll">
-            <div class="frost-card p-8 md:p-16 lg:p-24 rounded-2xl md:rounded-[3rem] relative overflow-hidden group shadow-2xl border-primary/5 bg-white/95" style="background: white; border: 1px solid rgba(161, 50, 91, 0.05);">
-                <div class="space-y-6 md:space-y-8 relative z-10">
-                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface leading-[1.1]">
-                        Ready to Transform Your <br/>
-                        <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Financial Ecosystem?</span>
-                    </h2>
-                    <p class="text-base md:text-lg text-secondary max-w-xl mx-auto leading-relaxed font-medium opacity-90">
-                        Join the world's most innovative institutions. Experience the future of relationship management today.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center pt-4">
-                        <a class="px-6 md:px-10 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary font-bold shadow-lg transition-all active:scale-95 text-base md:text-lg rounded-xl shimmer-btn text-center" href="#">Request a Demo</a>
-                        <a class="px-6 md:px-10 py-3 md:py-4 bg-white border-2 border-primary/10 text-on-surface font-bold transition-all hover:border-primary active:scale-95 text-base md:text-lg shadow-sm rounded-xl text-center" href="#">
-                            Contact Sales
-                        </a>
-                    </div>
-                    <div class="pt-8 md:pt-12 flex flex-wrap justify-center gap-6 md:gap-8 text-secondary font-bold">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
-                            <span class="text-[10px] uppercase tracking-[0.2em] opacity-70">No hidden fees</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
-                            <span class="text-[10px] uppercase tracking-[0.2em] opacity-70">GDPR &amp; SOC2 Compliant</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
-                            <span class="text-[10px] uppercase tracking-[0.2em] opacity-70">24/7 Priority Support</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="institution-types">
-        <div class="absolute inset-0 mesh-gradient opacity-20"></div>
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="text-center mb-10 md:mb-16 reveal-on-scroll">
-                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 mb-6">
-                    <span class="text-primary font-extrabold text-[10px] uppercase tracking-widest">Scalable Infrastructure</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-6">
-                    Built for <span class="bg-gradient-to-r from-on-background via-primary to-secondary bg-clip-text text-transparent">Every Business Model</span>
-                </h2>
-                <p class="text-base md:text-lg text-secondary max-w-xl mx-auto font-medium opacity-80">Adapting to specific compliance and operational needs.</p>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 100ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Banks</h3>
-                    <p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Enterprise-grade security and core banking integration for large-scale operations.</p>
-                </div>
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 200ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">universal_currency_alt</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Wealth Mgmt</h3>
-                    <p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Streamlined asset management and investment tracking for diverse portfolios.</p>
-                </div>
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 300ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">handshake</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Credit Brokers</h3>
-                    <p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Automated loan origination and multi-lender coordination for fast-paced brokerage.</p>
-                </div>
-                <div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 400ms;">
-                    <div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
-                        <span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">person_pin_circle</span>
-                    </div>
-                    <h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Agents</h3>
-                    <p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Mobile-first CRM tools designed for independent agents and field-based teams.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Dark Footer -->
+  function cs(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src);
+    gl.compileShader(s);
+    return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog);
+  gl.useProgram(prog);
+  const buf = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+  const pos = gl.getAttribLocation(prog, 'a_position');
+  gl.enableVertexAttribArray(pos);
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+  const uTime = gl.getUniformLocation(prog, 'u_time');
+  const uRes = gl.getUniformLocation(prog, 'u_resolution');
+  const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+  let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+  window.addEventListener('mousemove', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    if (rect.width && rect.height) {
+      const nx = (event.clientX - rect.left) / rect.width;
+      const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+      mouse.x = nx * canvas.width;
+      mouse.y = ny * canvas.height;
+    }
+  });
+  function render(t) {
+    if (typeof ResizeObserver === 'undefined') syncSize();
+    gl.viewport(0, 0, canvas.width, canvas.height);
+    if (uTime) gl.uniform1f(uTime, t * 0.001);
+    if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+    if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+    gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(render);
+  }
+  render(0);
+})();
+</script>
+</div>
+<!-- STITCH_SHADER_END:ANIMATION_98 -->
+<div class="fixed inset-0 grid-pattern pointer-events-none z-0"></div>
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-primary/5 flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-margin-desktop py-3 md:py-2.5 max-w-full mx-auto transition-all duration-500">
+<div class="flex items-center gap-4 md:gap-6">
+<span class="font-headline-md text-xl font-extrabold text-primary tracking-tighter">EGG Finance</span>
+<div class="hidden md:flex items-center gap-6">
+<a class="hover:text-accent-pink transition-colors font-label-md text-xs border-primary font-semibold text-on-surface-variant border-b-2" href="#features">Home</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="#functionality">Functionality</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="Editions.html">Editions</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="#case studies">Case Studies</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="team">Team</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-xs font-semibold" href="Contact.html">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-3 md:gap-4">
+<button class="material-symbols-outlined text-secondary hover:text-primary transition-colors text-xl hidden md:block">search</button>
+<a href="Contact.html" class="bg-accent-pink border border-accent-pink text-white px-4 py-2 md:px-5 md:py-2 rounded-full font-bold text-xs hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn inline-block text-center">Get Started</a>
+<button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-secondary hover:text-primary transition-colors text-2xl">menu</button>
+</div>
+</nav>
+<div id="mobile-menu" class="hidden fixed inset-0 top-[60px] z-40 bg-white/95 backdrop-blur-xl md:hidden flex flex-col p-6 gap-4 border-t border-primary/5 shadow-lg overflow-y-auto">
+<a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="#features">Home</a>
+<a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="#functionality">Functionality</a>
+<a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="Editions.html">Editions</a>
+<a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="#case studies">Case Studies</a>
+<a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="team">Team</a>
+<a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-label-md text-base font-semibold py-3 border-b border-primary/5" href="Contact.html">Contact</a>
+<a href="Contact.html" class="bg-accent-pink border border-accent-pink text-white px-5 py-3 rounded-full font-bold text-sm hover:bg-primary hover:border-primary transition-all active:scale-95 shadow-sm shimmer-btn w-full mt-4 text-center">Get Started</a>
+</div>
+<header class="relative pt-24 pb-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop hero-glow overflow-hidden min-h-[60vh] lg:min-h-[80vh] flex items-center">
+<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10 grid-cols-1">
+<div class="space-y-6 text-center lg:text-left">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 animate-fade-in-up" style="animation-delay: 100ms;">
+<span class="w-1.5 h-1.5 rounded-full bg-accent-pink animate-pulse"></span>
+<span class="text-primary font-bold text-[10px] uppercase tracking-widest">Trusted by 50+ Global Institutions</span>
+</div>
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.05] text-on-surface animate-fade-in-up" style="animation-delay: 200ms;">
+The Intelligent CRM for <br/>
+<span class="text-secondary/30 italic font-light">Modern</span> <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Finance</span>
+</h1>
+<p class="text-base md:text-lg text-secondary leading-relaxed max-w-lg font-medium opacity-90 mx-auto lg:mx-0 animate-fade-in-up" style="animation-delay: 300ms;">
+Empower your team with a high-performance SaaS infrastructure designed for deep relationship management and high-precision automation.
+</p>
+<div class="flex flex-wrap gap-4 pt-2 justify-center lg:justify-start animate-fade-in-up" style="animation-delay: 400ms;">
+<a href="Contact.html" class="px-6 md:px-8 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 active:scale-95 text-base shimmer-btn">Start Free Trial <span class="material-symbols-outlined text-lg">arrow_right_alt</span></a>
+<a href="Contact.html" class="px-6 md:px-8 py-3 md:py-4 text-on-surface rounded-xl font-bold hover:bg-white transition-all active:scale-95 bg-white/60 text-base hover:scale-105 hover:shadow-lg duration-300 shadow-sm hover:border-primary text-center" style="border: 2px solid rgba(161, 50, 91, 0.15);">View Whitepaper</a>
+</div>
+</div>
+<div class="relative group animate-fade-in-up mt-8 lg:mt-0" style="animation-delay: 500ms;">
+<div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full opacity-30 animate-pulse-slow"></div>
+<div class="relative frost-card p-2 rounded-2xl md:rounded-[2rem] border-white/60 animate-float shadow-2xl bg-white/80" style="background: radial-gradient(circle at top right, rgba(224, 99, 140, 0.05) 0%, rgba(248, 249, 250, 0.98) 70%); border: 1px solid rgba(255, 255, 255, 0.6);">
+<img alt="High-fidelity 3D financial CRM dashboard visualization" class="rounded-xl md:rounded-[1.75rem] w-full object-cover" src="https://lh3.googleusercontent.com/aida/AP1WRLuZjRGSuLvXuBrxSAFMp88xGhhq-yZSAj_MoPpGYKxfgYw3utlySJ9sN-2yYpPLD7OaH0BK_AOYqQZF9nX1HR_9C5-9VB5pXYj3s19juK9vYYmP1lxnP4QqJzBCzPUfRy2daOWqRwBmXCgCYE3Gz6Gwfq4_xZZXne3YvNkWHh5eG0Y789uC87y7ZIrjT672EXIUtVWWWzjvCIieHrIPF9xl5R2r0VR0EHdUwv_C5ONMwsTBQAR_-KpSQA"/>
+<div class="frost-card p-4 md:p-6 rounded-2xl shadow-xl bg-white/90 border-primary/10 mb-4 md:absolute md:-bottom-6 md:-left-6 md:mb-0" style="background: white; border: 1px solid rgba(161, 50, 91, 0.1);">
+<div class="text-[10px] md:text-xs text-secondary/60 mb-1 font-bold uppercase tracking-widest">Total Assets Locked</div>
+<div class="text-2xl md:text-3xl font-extrabold text-primary">$4.2B+</div>
+</div>
+<div class="frost-card p-3 md:p-4 rounded-2xl shadow-xl bg-white/90 border-primary/10 md:absolute md:-top-6 md:-right-6" style="background: white; border: 1px solid rgba(161, 50, 91, 0.1);">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-500/50"></div>
+<span class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-on-surface">System Operational</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="py-8 md:py-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10 -mt-4 md:-mt-8">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 reveal-on-scroll">
+<div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+<div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">17+</div>
+<div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Years Expertise</div>
+</div>
+<div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+<div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">50+</div>
+<div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Global SaaS Deployments</div>
+</div>
+<div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+<div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">70+</div>
+<div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Specialized Staff</div>
+</div>
+<div class="frost-card p-6 md:p-8 rounded-xl bg-white border border-primary/5 shadow-md hover:shadow-xl transition-all duration-500 group flex flex-col items-center text-center" style="background: radial-gradient(circle, rgba(224, 99, 140, 0.04) 0%, rgb(255, 255, 255) 70%);">
+<div class="text-2xl md:text-3xl font-extrabold text-primary mb-1 group-hover:scale-110 transition-transform duration-300">20+</div>
+<div class="text-[10px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">API Integrations</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-12 md:py-20 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="features">
+<div class="absolute inset-0 mesh-gradient opacity-40"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="text-center mb-10 md:mb-16 reveal-on-scroll">
+<h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-4">
+Powerful <span class="bg-gradient-to-r from-primary to-accent-pink bg-clip-text text-transparent">Core Features</span>
+</h2>
+<div class="w-24 h-1 bg-gradient-to-r from-primary to-accent-pink mx-auto rounded-full mb-6"></div>
+<p class="text-secondary max-w-xl mx-auto text-base md:text-lg font-medium opacity-80">Next-generation tools engineered for high-frequency financial demands.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6 md:gap-8 grid-cols-1">
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 ease-in-out shadow-md border border-primary/5" style="background: white; transition-delay: 100ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+<span class="material-symbols-outlined text-2xl md:text-3xl">edit_document</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface">Digital Signature + AI Docs</h3>
+<p class="text-secondary text-sm leading-relaxed font-medium opacity-80">Streamline your workflow with automated document processing and secure digital verification.</p>
+</div>
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 ease-in-out shadow-md border border-primary/5" style="background: white; transition-delay: 200ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+<span class="material-symbols-outlined text-2xl md:text-3xl">bolt</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface">Marketing Automation</h3>
+<p class="text-secondary text-sm leading-relaxed font-medium opacity-80">Convert prospects faster with intelligent lead scoring and automated campaigns.</p>
+</div>
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2rem] group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-2 hover:scale-105 transition-all duration-500 ease-in-out shadow-md border border-primary/5" style="background: white; transition-delay: 300ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-6 border border-primary/10 group-hover:bg-primary group-hover:text-white transition-all duration-500">
+<span class="material-symbols-outlined text-2xl md:text-3xl">dashboard_customize</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface">Custom Dynamic UI</h3>
+<p class="text-secondary text-sm leading-relaxed font-medium opacity-80">Tailor the platform to your specific needs with flexible data structures and interfaces.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-surface-container-low/20 relative border-y border-primary/5 mesh-gradient" id="solutions">
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="mb-10 md:mb-16 text-center md:text-left reveal-on-scroll">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container/40 border border-secondary/20 mb-6">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse-slow"></span>
+<span class="text-secondary font-extrabold text-[10px] uppercase tracking-widest">Our Competencies</span>
+</div>
+<h2 class="text-3xl md:text-4xl lg:text-6xl font-extrabold tracking-tight text-on-surface mb-6 leading-[1.1]">
+Precision Engineering for <br/><span class="bg-gradient-to-r from-primary to-accent-pink bg-clip-text text-transparent">Financial Excellence</span>
+</h2>
+<p class="text-base md:text-lg text-secondary max-w-xl font-medium opacity-80">
+Comprehensive solutions designed specifically for the unique demands of the modern financial industry.
+</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+<div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 100ms;">
+<div class="flex flex-col gap-2 relative z-10 flex-grow">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">groups</span>
+<h3 class="text-xl font-bold text-on-surface">Sales Network</h3>
+</div>
+<p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Track performance and customer data with a CRM designed for high-stakes environments.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Learn more <span class="material-symbols-outlined text-base">arrow_forward</span></div>
+</div>
+</div>
+<div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 150ms;">
+<div class="flex flex-col gap-2 relative z-10 flex-grow">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">payments</span>
+<h3 class="text-xl font-bold text-on-surface">Finance and Credit</h3>
+</div>
+<p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Fast quoting in just a few clicks. Reduce friction in digital credit approval.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Explore engine <span class="material-symbols-outlined text-base">arrow_forward</span></div>
+</div>
+</div>
+<div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 200ms;">
+<div class="flex flex-col gap-2 relative z-10 flex-grow">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">description</span>
+<h3 class="text-xl font-bold text-on-surface">BackOffice</h3>
+</div>
+<p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Simplified management of applications via intelligent automation systems.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">View automation <span class="material-symbols-outlined text-base">arrow_forward</span></div>
+</div>
+</div>
+<div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 250ms;">
+<div class="flex flex-col gap-2 relative z-10 flex-grow">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<h3 class="text-xl font-bold text-on-surface">Compliance</h3>
+</div>
+<p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Secure risk management compliant with global audit and regulatory standards.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Read security <span class="material-symbols-outlined text-base">arrow_forward</span></div>
+</div>
+</div>
+<div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 300ms;">
+<div class="flex flex-col gap-2 relative z-10 flex-grow">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">devices</span>
+<h3 class="text-xl font-bold text-on-surface">Mobile First</h3>
+</div>
+<p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Work and quote on the go with natively optimized high-performance apps.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Download apps <span class="material-symbols-outlined text-base">arrow_forward</span></div>
+</div>
+</div>
+<div class="frost-card rounded-2xl md:rounded-[1.75rem] p-6 md:p-8 flex gap-4 md:gap-6 overflow-hidden group relative reveal-on-scroll bg-white hover:shadow-2xl hover:scale-105 transition-all duration-500 border border-primary/5" style="transition-delay: 350ms;">
+<div class="flex flex-col gap-2 relative z-10 flex-grow">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-primary text-3xl group-hover:text-accent-pink transition-colors duration-500" style="font-variation-settings: 'FILL' 1;">insights</span>
+<h3 class="text-xl font-bold text-on-surface">Marketing AI</h3>
+</div>
+<p class="text-sm text-secondary leading-relaxed font-medium opacity-80">Targeted campaigns and higher ROI integrated directly into your workflow.</p>
+<div class="mt-4 flex items-center gap-2 text-primary font-bold text-xs group-hover:translate-x-2 transition-all duration-500">Analyze ROI <span class="material-symbols-outlined text-base">arrow_forward</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="resources">
+<div class="absolute inset-0 mesh-gradient opacity-20"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<header class="mb-10 md:mb-16 text-center md:text-left reveal-on-scroll">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-5">
+<span class="w-2 h-2 rounded-full bg-accent-pink animate-pulse"></span>
+<span class="text-primary font-extrabold text-[10px] uppercase tracking-widest">Success Stories</span>
+</div>
+<h2 class="text-3xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-on-surface mb-6">Case <span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Studies</span></h2>
+<p class="text-base md:text-lg text-secondary max-w-xl font-medium opacity-80">How leading institutions are redefining operations through EGG.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8">
+<div class="lg:col-span-7 group reveal-on-scroll">
+<div class="frost-card p-8 md:p-12 lg:p-16 rounded-2xl md:rounded-[3rem] h-full flex flex-col justify-between border-primary/10 shadow-xl relative overflow-hidden bg-white hover:shadow-2xl transition-all duration-500">
+<div class="relative z-10">
+<div class="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center rounded-2xl bg-primary text-white mb-6 md:mb-8 shadow-lg shadow-primary/20">
+<span class="font-extrabold text-2xl md:text-3xl">F</span>
+</div>
+<h3 class="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-4 md:mb-6 text-on-surface leading-tight">Optimizing 12M+ Monthly User Transactions</h3>
+<p class="text-base md:text-lg text-secondary leading-relaxed font-medium opacity-90 mb-6 md:mb-8 max-w-lg">How the leading Italian price comparison engine optimized payment reconciliation using EGG's automated core.</p>
+<div class="flex flex-wrap gap-3 mb-8 md:mb-10">
+<span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/10">Enterprise Scale</span>
+<span class="px-4 py-1.5 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-wider border border-primary/10">Backend Logic</span>
+</div>
+</div>
+<div class="relative z-10">
+<a href="Contact.html" class="inline-flex items-center gap-2.5 px-6 md:px-8 py-3 md:py-4 bg-primary text-white rounded-2xl font-bold hover:bg-accent-pink transition-all active:scale-95 shadow-lg shadow-primary/20 text-base shimmer-btn">Read Case Study <span class="material-symbols-outlined text-xl">arrow_forward</span></a>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 space-y-6 md:space-y-8">
+<div class="group reveal-on-scroll" style="transition-delay: 200ms;">
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border-primary/5 shadow-md hover:shadow-2xl transition-all duration-500 bg-white" style="background: white;">
+<div class="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-secondary-container/60 text-secondary mb-6 md:mb-8 border border-secondary/20">
+<span class="font-extrabold text-xl md:text-2xl">B</span>
+</div>
+<h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Modernizing Legacy Banking</h3>
+<p class="text-secondary text-sm leading-relaxed font-medium opacity-80 mb-6 md:mb-8">Streamlining Bibanca's systems with high-fidelity data extraction.</p>
+<a href="Contact.html" class="inline-flex items-center gap-2 text-primary font-bold text-base group-hover:gap-4 transition-all">View Case Study <span class="material-symbols-outlined text-lg">east</span></a>
+</div>
+</div>
+<div class="group reveal-on-scroll" style="transition-delay: 400ms;">
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] border-primary/5 shadow-md hover:shadow-2xl transition-all duration-500 bg-white" style="background: white;">
+<div class="w-12 h-12 md:w-14 md:h-14 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 md:mb-8 border border-primary/20">
+<span class="font-extrabold text-xl md:text-2xl">A</span>
+</div>
+<h3 class="text-xl md:text-2xl font-bold mb-3 md:mb-4 text-on-surface">Digital Mortgage Shift</h3>
+<p class="text-secondary text-sm leading-relaxed font-medium opacity-80 mb-6 md:mb-8">Empowering brokers with a unified interface for faster approvals.</p>
+<a href="Contact.html" class="inline-flex items-center gap-2 text-primary font-bold text-base group-hover:gap-4 transition-all">View Case Study <span class="material-symbols-outlined text-lg">east</span></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white relative overflow-hidden border-t border-primary/5">
+<div class="absolute inset-0 mesh-gradient opacity-15"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="mb-10 md:mb-16 text-center reveal-on-scroll">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 mb-5">
+<span class="text-primary font-extrabold text-[10px] uppercase tracking-widest">Global Network</span>
+</div>
+<h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-3">Institutional <span class="text-primary">Partners</span></h2>
+<p class="text-secondary opacity-70 font-medium text-sm">Powering the next generation of financial leaders.</p>
+</div>
+<div class="carousel-container relative overflow-hidden reveal-on-scroll px-2 md:px-4">
+<div class="flex gap-4 md:gap-10 animate-scroll whitespace-nowrap py-6 md:py-8 px-2 md:px-4">
+<div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+<div class="flex items-center gap-4 md:gap-5">
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20 shadow-sm">
+<span class="material-symbols-outlined text-[#f2a154] text-xl md:text-2xl">currency_bitcoin</span>
+</div>
+<span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
+</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+<div class="flex items-center gap-4 md:gap-5">
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#a1325b]/10 flex items-center justify-center border border-[#a1325b]/20 shadow-sm">
+<span class="material-symbols-outlined text-[#a1325b] text-xl md:text-2xl">account_balance_wallet</span>
+</div>
+<span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">GOLD<span class="text-[#a1325b]">VAULT</span></span>
+</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+<div class="flex items-center gap-4 md:gap-5">
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#a855f7]/10 flex items-center justify-center border border-[#a855f7]/20 shadow-sm">
+<span class="material-symbols-outlined text-[#a855f7] text-xl md:text-2xl">hub</span>
+</div>
+<span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">ETHER<span class="text-[#a855f7]">NET</span></span>
+</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+<div class="flex items-center gap-4 md:gap-5">
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-accent-pink/10 flex items-center justify-center border border-accent-pink/20 shadow-sm">
+<span class="material-symbols-outlined text-accent-pink text-xl md:text-2xl">monitoring</span>
+</div>
+<span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">PULSE<span class="text-accent-pink">CORE</span></span>
+</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+<div class="flex items-center gap-4 md:gap-5">
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#4ade80]/10 flex items-center justify-center border border-[#4ade80]/20 shadow-sm">
+<span class="material-symbols-outlined text-[#4ade80] text-xl md:text-2xl">shield_with_heart</span>
+</div>
+<span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">SAFE<span class="text-[#4ade80]">GUARD</span></span>
+</div>
+</div>
+<div class="min-w-[250px] md:min-w-[300px] h-[120px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+<div class="flex items-center gap-4 md:gap-5">
+<div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20 shadow-sm">
+<span class="material-symbols-outlined text-[#f2a154] text-xl md:text-2xl">currency_bitcoin</span>
+</div>
+<span class="text-xl md:text-2xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="institution-types">
+<div class="absolute inset-0 mesh-gradient opacity-20"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="text-center mb-10 md:mb-16 reveal-on-scroll">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/5 border border-primary/10 mb-6">
+<span class="text-primary font-extrabold text-[10px] uppercase tracking-widest">Scalable Infrastructure</span>
+</div>
+<h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface mb-6">
+Built for <span class="bg-gradient-to-r from-on-background via-primary to-secondary bg-clip-text text-transparent">Every Business Model</span>
+</h2>
+<p class="text-base md:text-lg text-secondary max-w-xl mx-auto font-medium opacity-80">Adapting to specific compliance and operational needs.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 100ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Banks</h3>
+<p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Enterprise-grade security and core banking integration for large-scale operations.</p>
+</div>
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 200ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">universal_currency_alt</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Wealth Mgmt</h3>
+<p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Streamlined asset management and investment tracking for diverse portfolios.</p>
+</div>
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 300ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">handshake</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Credit Brokers</h3>
+<p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Automated loan origination and multi-lender coordination for fast-paced brokerage.</p>
+</div>
+<div class="frost-card p-6 md:p-10 rounded-2xl md:rounded-[2.5rem] flex flex-col items-center text-center group reveal-on-scroll bg-white hover:shadow-2xl hover:-translate-y-3 hover:scale-105 transition-all duration-500 border border-primary/5 shadow-md" style="transition-delay: 400ms;">
+<div class="w-14 h-14 md:w-16 md:h-16 rounded-[1.25rem] bg-primary/10 flex items-center justify-center mb-6 md:mb-8 border border-primary/10 transition-all duration-500 group-hover:bg-primary group-hover:text-white group-hover:scale-110">
+<span class="material-symbols-outlined text-2xl md:text-3xl" style="font-variation-settings: 'FILL' 1;">person_pin_circle</span>
+</div>
+<h3 class="text-lg md:text-xl font-bold mb-3 text-on-surface group-hover:text-primary transition-colors">Agents</h3>
+<p class="text-secondary leading-relaxed font-medium text-xs md:text-sm opacity-80">Mobile-first CRM tools designed for independent agents and field-based teams.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden" id="cta">
+<div class="absolute inset-0 mesh-gradient opacity-50"></div>
+<div class="max-w-5xl mx-auto relative z-10 text-center reveal-on-scroll">
+<div class="frost-card p-8 md:p-16 lg:p-24 rounded-2xl md:rounded-[3rem] relative overflow-hidden group shadow-2xl border-primary/5 bg-white/95" style="background: white; border: 1px solid rgba(161, 50, 91, 0.05);">
+<div class="space-y-6 md:space-y-8 relative z-10">
+<h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface leading-[1.1]">
+Ready to Transform Your <br/>
+<span class="bg-gradient-to-r from-primary via-accent-pink to-primary bg-clip-text text-transparent">Financial Ecosystem?</span>
+</h2>
+<p class="text-base md:text-lg text-secondary max-w-xl mx-auto leading-relaxed font-medium opacity-90">
+Join the world's most innovative institutions. Experience the future of relationship management today.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 md:gap-5 justify-center pt-4">
+<a href="Contact.html" class="px-6 md:px-10 py-3 md:py-4 bg-accent-pink border-2 border-accent-pink text-white hover:bg-primary hover:border-primary font-bold shadow-lg transition-all active:scale-95 text-base md:text-lg rounded-xl shimmer-btn text-center">Request a Demo</a>
+<a href="Contact.html" class="px-6 md:px-10 py-3 md:py-4 bg-white border-2 border-primary/10 text-on-surface font-bold transition-all hover:border-primary active:scale-95 text-base md:text-lg shadow-sm rounded-xl text-center">
+Contact Sales
+</a>
+</div>
+<div class="pt-8 md:pt-12 flex flex-wrap justify-center gap-6 md:gap-8 text-secondary font-bold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
+<span class="text-[10px] uppercase tracking-[0.2em] opacity-70">No hidden fees</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
+<span class="text-[10px] uppercase tracking-[0.2em] opacity-70">GDPR &amp; SOC2 Compliant</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-green-600 text-base">check_circle</span>
+<span class="text-[10px] uppercase tracking-[0.2em] opacity-70">24/7 Priority Support</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <footer class="w-full bg-[#2a2a2a] text-white pt-16 md:pt-24 pb-10 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10 overflow-hidden">
-    <div class="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent-pink/5 blur-[120px] rounded-full -mr-20 md:-mr-200 -mb-20 md:-mb-200"></div>
-    <div class="max-w-7xl mx-auto relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-12 md:mb-16">
-            <div class="md:col-span-5 space-y-6 md:space-y-8">
-                <a href="index.html" class="inline-block text-2xl md:text-3xl font-extrabold text-accent-pink tracking-tighter hover:opacity-80 transition-opacity">EGG finance</a>
-                <p class="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
-                    EGG finance is a technology company founded in 2008 specializing in CRM, Marketing Automation, Data Analytics, and cloud-based AI for the financial sector.
-                </p>
-                <div class="flex gap-3 pt-2">
-                    <!-- Facebook -->
-                    <a href="#" aria-label="Facebook" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
-                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
-                    </a>
-                    <!-- X (Twitter) -->
-                    <a href="#" aria-label="X" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
-                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
-                    </a>
-                    <!-- LinkedIn -->
-                    <a href="#" aria-label="LinkedIn" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
-                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
-                    </a>
-                </div>
-            </div>
-            <div class="md:col-span-4 space-y-6 md:space-y-8 md:pl-12">
-                <h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Contacts</h4>
-                <ul class="space-y-5">
-                    <li class="flex items-center gap-4 group cursor-pointer">
-                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
-                            <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">mail</span>
-                        </div>
-                        <a href="mailto:hello@eggfinance.com" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">hello@eggfinance.com</a>
-                    </li>
-                    <li class="flex items-center gap-4 group cursor-pointer">
-                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
-                            <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">phone</span>
-                        </div>
-                        <a href="tel:+390212345678" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">+39 02 1234 5678</a>
-                    </li>
-                    <li class="flex items-center gap-4 group cursor-pointer">
-                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
-                            <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">location_on</span>
-                        </div>
-                        <span class="text-sm md:text-base text-white/70 font-semibold">Via Monte Napoleone, 8<br/>20121 Milano, Italy</span>
-                    </li>
-                </ul>
-            </div>
-            <div class="md:col-span-3 space-y-6 md:space-y-8">
-                <h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Resources</h4>
-                <ul class="space-y-4">
-                    <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Privacy Policy</a></li>
-                    <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Terms and Conditions</a></li>
-                    <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Security</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-            <p class="text-xs md:text-sm text-white/50">© 2026 EGG finance. All rights reserved.</p>
-            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
-                <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Privacy Policy</a>
-                <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Terms and Conditions</a>
-            </div>
-        </div>
-    </div>
+<div class="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent-pink/5 blur-[120px] rounded-full -mr-20 md:-mr-200 -mb-20 md:-mb-200"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-12 md:mb-16">
+<div class="md:col-span-5 space-y-6 md:space-y-8">
+<a href="index.html" class="inline-block text-2xl md:text-3xl font-extrabold text-accent-pink tracking-tighter hover:opacity-80 transition-opacity">EGG finance</a>
+<p class="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
+EGG finance is a technology company founded in 2008 specializing in CRM, Marketing Automation, Data Analytics, and cloud-based AI for the financial sector.
+</p>
+<div class="flex gap-3 pt-2">
+<a href="#" aria-label="Facebook" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+<svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+</a>
+<a href="#" aria-label="X" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+<svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+</a>
+<a href="#" aria-label="LinkedIn" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+<svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
+</a>
+</div>
+</div>
+<div class="md:col-span-4 space-y-6 md:space-y-8 md:pl-12">
+<h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Contacts</h4>
+<ul class="space-y-5">
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">mail</span>
+</div>
+<a href="mailto:hello@eggfinance.com" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">hello@eggfinance.com</a>
+</li>
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">phone</span>
+</div>
+<a href="tel:+390212345678" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">+39 02 1234 5678</a>
+</li>
+<li class="flex items-center gap-4 group cursor-pointer">
+<div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+<span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">location_on</span>
+</div>
+<span class="text-sm md:text-base text-white/70 font-semibold">Via Monte Napoleone, 8<br/>20121 Milano, Italy</span>
+</li>
+</ul>
+</div>
+<div class="md:col-span-3 space-y-6 md:space-y-8">
+<h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Resources</h4>
+<ul class="space-y-4">
+<li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Privacy Policy</a></li>
+<li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Terms and Conditions</a></li>
+<li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Security</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs md:text-sm text-white/50">© 2026 EGG finance. All rights reserved.</p>
+<div class="flex flex-wrap justify-center gap-4 md:gap-6">
+<a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Privacy Policy</a>
+<a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Terms and Conditions</a>
+</div>
+</div>
+</div>
 </footer>
+<script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
 
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-
-        if (mobileMenuBtn && mobileMenu) {
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const icon = mobileMenuBtn.textContent.trim();
-                mobileMenuBtn.textContent = icon === 'menu' ? 'close' : 'menu';
-            });
-
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenuBtn.textContent = 'menu';
-                });
-            });
-        }
-
-        // Intersection Observer for Reveal Animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
-            observer.observe(el);
+    if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = mobileMenuBtn.textContent.trim();
+            mobileMenuBtn.textContent = icon === 'menu' ? 'close' : 'menu';
         });
 
-        // WebGL Shader Support Check
-        if (!window.customElements.get('webgl-shader')) {
-            console.log("WebGL Shader active");
-        }
-    </script>
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenuBtn.textContent = 'menu';
+            });
+        });
+    }
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+</script>
 </body>
 </html>
