@@ -120,8 +120,8 @@
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .premium-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 30px 60px -12px rgba(224, 99, 140, 0.12), 0 18px 36px -18px rgba(224, 99, 140, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(224, 99, 140, 0.12), 0 12px 24px -12px rgba(224, 99, 140, 0.15);
         }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .animate-scroll { display: flex; width: max-content; animation: scroll 30s linear infinite; }
@@ -131,14 +131,13 @@
     <!-- TopNavBar -->
     <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-primary/5 flex justify-between items-center px-4 sm:px-6 md:px-8 lg:px-margin-desktop py-3 md:py-4 max-w-full mx-auto transition-all duration-500">
         <div class="flex items-center gap-4 md:gap-6">
-            <a href="index.html" class="font-headline-lg text-xl md:text-2xl font-extrabold text-primary tracking-tighter flex items-center gap-2">
-                <span class="material-symbols-outlined text-2xl md:text-3xl">arrow_back</span>
-                <span class="hidden sm:inline">EGG Finance</span>
+            <a href="index.html" class="font-headline-lg text-xl md:text-2xl font-extrabold text-primary tracking-tighter hover:opacity-80 transition-opacity">
+                EGG Finance
             </a>
             <div class="hidden md:flex items-center gap-6">
-                <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="index.html">Home</a>
+                <a class="text-primary font-semibold border-b-2 border-primary" href="index.html">Home</a>
                 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="index.html#functionality">Functionality</a>
-                <a class="hover:text-accent-pink transition-colors font-label-md text-sm border-primary font-semibold text-on-surface-variant border-b-2" href="Editions.html">Editions</a>
+                <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="Editions.html">Editions</a>
                 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="index.html#resources">Success Stories</a>
                 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="team">Team</a>
                 <a class="text-on-surface-variant transition-colors font-medium hover:text-primary" href="contact">Contact</a>
@@ -146,18 +145,16 @@
         </div>
         <div class="flex items-center gap-3 md:gap-4">
             <button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all hidden md:block">language</button>
-            <button class="bg-primary text-on-primary px-4 py-2 md:px-6 md:py-2.5 rounded-full md:rounded-2xl font-bold primary-btn-lift text-xs md:text-sm">Get Started</button>
+            <button class="bg-primary text-on-primary px-4 py-2 md:px-6 md:py-2.5 rounded-full font-bold primary-btn-lift text-xs md:text-sm">Get Started</button>
             <button id="mobile-menu-btn" class="md:hidden material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-2xl">menu</button>
         </div>
     </nav>
     
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden fixed inset-0 top-[60px] z-40 bg-white/95 backdrop-blur-xl md:hidden flex flex-col p-6 gap-4 border-t border-primary/5 shadow-lg overflow-y-auto">
-        <a class="mobile-menu-link flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-medium py-3 border-b border-primary/5" href="index.html">
-            <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Home
-        </a>
+        <a class="mobile-menu-link text-primary font-semibold py-3 border-b border-primary/5" href="index.html">Home</a>
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-medium py-3 border-b border-primary/5" href="index.html#functionality">Functionality</a>
-        <a class="mobile-menu-link text-primary font-semibold py-3 border-b border-primary/5" href="Editions.html">Editions</a>
+        <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-medium py-3 border-b border-primary/5" href="Editions.html">Editions</a>
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-medium py-3 border-b border-primary/5" href="index.html#resources">Success Stories</a>
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-medium py-3 border-b border-primary/5" href="team">Team</a>
         <a class="mobile-menu-link text-on-surface-variant hover:text-primary transition-colors font-medium py-3" href="contact">Contact</a>
@@ -166,12 +163,12 @@
 
     <main class="pt-24 md:pt-32">
         <!-- Hero Section -->
-        <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-margin-desktop text-center mb-12 md:mb-20">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-on-surface mb-6 md:mb-8">Editions</h1>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 md:mt-8">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-margin-desktop text-center mb-10 md:mb-16">
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-on-surface mb-6">Editions</h1>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">
                 <div class="bg-surface-container-high/50 backdrop-blur-md border border-white/50 rounded-full p-1 flex items-center shadow-inner w-full sm:w-auto">
-                    <button class="flex-1 sm:flex-none px-6 md:px-8 py-2 rounded-full text-sm font-bold active-toggle transition-all duration-300" id="toggleMonthly">Monthly</button>
-                    <button class="flex-1 sm:flex-none px-6 md:px-8 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300" id="toggleAnnual">Annual</button>
+                    <button class="flex-1 sm:flex-none px-5 md:px-8 py-2 rounded-full text-sm font-bold active-toggle transition-all duration-300" id="toggleMonthly">Monthly</button>
+                    <button class="flex-1 sm:flex-none px-5 md:px-8 py-2 rounded-full text-sm font-medium text-on-surface-variant hover:text-on-surface transition-all duration-300" id="toggleAnnual">Annual</button>
                 </div>
                 <span class="text-primary font-bold text-xs bg-primary-fixed border border-primary/10 px-3 py-1.5 rounded-full whitespace-nowrap">Save 20%</span>
             </div>
@@ -181,137 +178,137 @@
         <section class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-margin-desktop pb-16 md:pb-24">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-stretch">
                 <!-- Tier 1: SE -->
-                <div class="premium-card bg-white rounded-2xl md:rounded-[2rem] p-6 md:p-10 flex flex-col border border-primary/5 shadow-sm">
+                <div class="premium-card bg-white rounded-xl md:rounded-2xl p-5 md:p-8 flex flex-col border border-primary/5 shadow-sm">
                     <div class="flex flex-col h-full">
-                        <div class="mb-6 md:mb-8">
-                            <span class="text-primary/60 tracking-[0.2em] text-[10px] uppercase block mb-4 font-medium">EGG FINANCE SE</span>
-                            <div class="h-12 md:h-16 flex items-baseline gap-1 whitespace-nowrap">
-                                <span class="text-on-surface font-extrabold text-3xl md:text-4xl lg:text-5xl">From 299€</span>
+                        <div class="mb-4 md:mb-6">
+                            <span class="text-primary/60 tracking-[0.2em] text-[10px] uppercase block mb-3 font-medium">EGG FINANCE SE</span>
+                            <div class="h-10 md:h-12 flex items-baseline gap-1 whitespace-nowrap">
+                                <span class="text-on-surface font-extrabold text-2xl md:text-3xl lg:text-4xl">From 299€</span>
                                 <span class="text-outline text-sm">/mo</span>
                             </div>
-                            <p class="text-on-surface-variant mt-4 md:mt-6 text-sm leading-relaxed min-h-[48px]">Ideal for small teams with fundamental needs for financial management.</p>
+                            <p class="text-on-surface-variant mt-3 md:mt-4 text-sm leading-relaxed min-h-[48px]">Ideal for small teams with fundamental needs for financial management.</p>
                         </div>
-                        <div class="flex-grow space-y-4 md:space-y-5 mb-8 md:mb-10">
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Case and Client Management</span>
+                        <div class="flex-grow space-y-3 md:space-y-4 mb-6 md:mb-8">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Case and Client Management</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Custom Fields</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Custom Fields</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Document Capture</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Document Capture</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Calendar with Appointments and Calls</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Calendar with Appointments</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Telemarketing Campaigns</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Telemarketing Campaigns</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4 opacity-30">
-                                <span class="material-symbols-outlined text-outline text-[20px] mt-0.5">close</span>
-                                <span class="text-sm md:text-[15px] text-on-surface-variant">Marketing Automation + AI</span>
+                            <div class="flex items-start gap-3 opacity-30">
+                                <span class="material-symbols-outlined text-outline text-[18px] mt-0.5">close</span>
+                                <span class="text-sm text-on-surface-variant">Marketing Automation + AI</span>
                             </div>
                         </div>
                         <div class="mt-auto">
-                            <button class="w-full py-3 md:py-4 px-6 rounded-xl md:rounded-2xl border-2 border-primary/20 text-primary font-bold hover:bg-primary/5 transition-all primary-btn-lift text-sm md:text-base">Request a Demo</button>
+                            <button class="w-full py-2.5 md:py-3 px-4 rounded-xl border-2 border-primary/20 text-primary font-bold hover:bg-primary/5 transition-all primary-btn-lift text-sm">Request a Demo</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tier 2: 3.0 Most Popular -->
-                <div class="premium-card bg-white rounded-2xl md:rounded-[2rem] flex flex-col border border-primary/10 shadow-xl relative p-6 md:p-10 z-10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                        <span class="bg-primary text-on-primary px-6 md:px-8 py-1.5 md:py-2 rounded-full text-[10px] tracking-widest shadow-lg whitespace-nowrap uppercase font-bold">Most Popular</span>
+                <div class="premium-card bg-white rounded-xl md:rounded-2xl flex flex-col border border-primary/10 shadow-lg relative p-5 md:p-8 z-10">
+                    <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                        <span class="bg-primary text-on-primary px-5 md:px-6 py-1.5 rounded-full text-[10px] tracking-widest shadow-md whitespace-nowrap uppercase font-bold">Most Popular</span>
                     </div>
                     <div class="flex flex-col h-full">
-                        <div class="mb-6 md:mb-8">
-                            <span class="text-primary/60 tracking-[0.2em] text-[10px] uppercase block mb-4 font-medium">EGG FINANCE 3.0</span>
-                            <div class="h-12 md:h-16 flex items-baseline gap-1 whitespace-nowrap">
-                                <span class="text-on-surface font-extrabold text-3xl md:text-4xl lg:text-5xl">From 2.199€</span>
+                        <div class="mb-4 md:mb-6">
+                            <span class="text-primary/60 tracking-[0.2em] text-[10px] uppercase block mb-3 font-medium">EGG FINANCE 3.0</span>
+                            <div class="h-10 md:h-12 flex items-baseline gap-1 whitespace-nowrap">
+                                <span class="text-on-surface font-extrabold text-2xl md:text-3xl lg:text-4xl">From 2.199€</span>
                                 <span class="text-outline text-sm">/mo</span>
                             </div>
-                            <p class="text-on-surface-variant mt-4 md:mt-6 text-sm leading-relaxed min-h-[48px]">The complete suite with AI-powered analytics and deep automation.</p>
+                            <p class="text-on-surface-variant mt-3 md:mt-4 text-sm leading-relaxed min-h-[48px]">The complete suite with AI-powered analytics and deep automation.</p>
                         </div>
-                        <div class="mb-6 md:mb-8">
-                            <div class="flex items-center gap-3 p-3 bg-primary/5 rounded-xl border border-primary/10">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex items-center gap-3 p-2.5 bg-primary/5 rounded-lg border border-primary/10">
                                 <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
-                                <span class="text-xs text-on-surface/80 uppercase tracking-wider font-semibold">Everything in EGG Finance SE</span>
+                                <span class="text-[11px] text-on-surface/80 uppercase tracking-wider font-semibold">Everything in EGG Finance SE</span>
                             </div>
                         </div>
-                        <div class="flex-grow space-y-4 md:space-y-5 mb-8 md:mb-10">
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">EGG Finance Colibri (Custom UI)</span>
+                        <div class="flex-grow space-y-3 md:space-y-4 mb-6 md:mb-8">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">EGG Finance Colibri (Custom UI)</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Advanced Data Analytics</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Advanced Data Analytics</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Marketing Automation Suite</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Marketing Automation Suite</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Core AI Engine Integration</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Core AI Engine Integration</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Multi-Channel Lead Capture</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Multi-Channel Lead Capture</span>
                             </div>
                         </div>
                         <div class="mt-auto">
-                            <button class="w-full py-3 md:py-4 px-6 rounded-xl md:rounded-2xl bg-primary text-on-primary font-bold shadow-lg shadow-primary/25 hover:opacity-90 transition-all primary-btn-lift text-sm md:text-base">Request a Demo</button>
+                            <button class="w-full py-2.5 md:py-3 px-4 rounded-xl bg-primary text-on-primary font-bold shadow-md shadow-primary/25 hover:opacity-90 transition-all primary-btn-lift text-sm">Request a Demo</button>
                         </div>
                     </div>
                 </div>
 
                 <!-- Tier 3: Bank -->
-                <div class="premium-card bg-white rounded-2xl md:rounded-[2rem] p-6 md:p-10 flex flex-col border border-primary/5 shadow-sm md:col-span-2 lg:col-span-1">
+                <div class="premium-card bg-white rounded-xl md:rounded-2xl p-5 md:p-8 flex flex-col border border-primary/5 shadow-sm md:col-span-2 lg:col-span-1">
                     <div class="flex flex-col h-full">
-                        <div class="mb-6 md:mb-8">
-                            <span class="text-primary/60 tracking-[0.2em] text-[10px] uppercase block mb-4 font-medium">BANK EDITION</span>
-                            <div class="h-12 md:h-16 flex items-baseline gap-1 whitespace-nowrap">
-                                <span class="text-on-surface font-extrabold text-3xl md:text-4xl lg:text-5xl">From 9.999€</span>
+                        <div class="mb-4 md:mb-6">
+                            <span class="text-primary/60 tracking-[0.2em] text-[10px] uppercase block mb-3 font-medium">BANK EDITION</span>
+                            <div class="h-10 md:h-12 flex items-baseline gap-1 whitespace-nowrap">
+                                <span class="text-on-surface font-extrabold text-2xl md:text-3xl lg:text-4xl">From 9.999€</span>
                                 <span class="text-outline text-sm">/mo</span>
                             </div>
-                            <p class="text-on-surface-variant mt-4 md:mt-6 text-sm leading-relaxed min-h-[48px]">The platform for the banking sector to create enterprise applications.</p>
+                            <p class="text-on-surface-variant mt-3 md:mt-4 text-sm leading-relaxed min-h-[48px]">The platform for the banking sector to create enterprise applications.</p>
                         </div>
-                        <div class="mb-6 md:mb-8">
-                            <div class="flex items-center gap-3 p-3 bg-primary/5 rounded-xl border border-primary/10">
+                        <div class="mb-4 md:mb-6">
+                            <div class="flex items-center gap-3 p-2.5 bg-primary/5 rounded-lg border border-primary/10">
                                 <span class="material-symbols-outlined text-primary text-[18px]">verified</span>
-                                <span class="text-xs text-on-surface/80 uppercase tracking-wider font-semibold">Everything in EGG Finance 3.0</span>
+                                <span class="text-[11px] text-on-surface/80 uppercase tracking-wider font-semibold">Everything in EGG Finance 3.0</span>
                             </div>
                         </div>
-                        <div class="flex-grow space-y-4 md:space-y-5 mb-8 md:mb-10">
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Exclusive Sector Functionalities</span>
+                        <div class="flex-grow space-y-3 md:space-y-4 mb-6 md:mb-8">
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Exclusive Sector Functionalities</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Dedicated Compliance Consultant</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Dedicated Compliance Consultant</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">Advanced Security Standards (SLA)</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">Advanced Security Standards (SLA)</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">White Label Capabilities</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">White Label Capabilities</span>
                             </div>
-                            <div class="flex items-start gap-3 md:gap-4">
-                                <span class="material-symbols-outlined text-primary text-[20px] mt-0.5">check</span>
-                                <span class="text-sm md:text-[15px] text-on-surface">24/7 Priority VIP Support</span>
+                            <div class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-primary text-[18px] mt-0.5">check</span>
+                                <span class="text-sm text-on-surface">24/7 Priority VIP Support</span>
                             </div>
                         </div>
                         <div class="mt-auto">
-                            <button class="w-full py-3 md:py-4 px-6 rounded-xl md:rounded-2xl border-2 border-primary/20 text-primary font-bold hover:bg-primary/5 transition-all primary-btn-lift text-sm md:text-base">Request a Demo</button>
+                            <button class="w-full py-2.5 md:py-3 px-4 rounded-xl border-2 border-primary/20 text-primary font-bold hover:bg-primary/5 transition-all primary-btn-lift text-sm">Request a Demo</button>
                         </div>
                     </div>
                 </div>
@@ -322,7 +319,7 @@
         <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white relative overflow-hidden border-y border-primary/10">
             <div class="absolute inset-0 mesh-gradient opacity-20"></div>
             <div class="max-w-7xl mx-auto relative z-10">
-                <div class="mb-10 md:mb-20 text-center">
+                <div class="mb-10 md:mb-16 text-center">
                     <div class="inline-flex items-center gap-2 px-4 md:px-5 py-1.5 md:py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
                         <span class="text-primary font-extrabold text-[10px] md:text-[11px] uppercase tracking-widest">Global Network</span>
                     </div>
@@ -332,57 +329,57 @@
                 <div class="carousel-container relative overflow-hidden">
                     <div class="flex gap-6 md:gap-12 animate-scroll whitespace-nowrap py-8 md:py-12 px-2 md:px-6">
                         <!-- FinanceFlow -->
-                        <div class="min-w-[250px] md:min-w-[340px] h-[120px] md:h-[200px] flex items-center justify-center p-4 md:p-12 group flex-shrink-0">
-                            <div class="flex items-center gap-4 md:gap-6">
-                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20 shadow-lg shadow-[#f2a154]/5">
-                                    <span class="material-symbols-outlined text-[#f2a154] text-2xl md:text-4xl">currency_bitcoin</span>
+                        <div class="min-w-[220px] md:min-w-[300px] h-[100px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+                            <div class="flex items-center gap-3 md:gap-5">
+                                <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20 shadow-md">
+                                    <span class="material-symbols-outlined text-[#f2a154] text-xl md:text-3xl">currency_bitcoin</span>
                                 </div>
-                                <span class="text-xl md:text-3xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
+                                <span class="text-lg md:text-2xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
                             </div>
                         </div>
                         <!-- GoldVault -->
-                        <div class="min-w-[250px] md:min-w-[340px] h-[120px] md:h-[200px] flex items-center justify-center p-4 md:p-12 group flex-shrink-0">
-                            <div class="flex items-center gap-4 md:gap-6">
-                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#a1325b]/10 flex items-center justify-center border border-[#a1325b]/20 shadow-lg shadow-[#a1325b]/5">
-                                    <span class="material-symbols-outlined text-[#a1325b] text-2xl md:text-4xl">account_balance_wallet</span>
+                        <div class="min-w-[220px] md:min-w-[300px] h-[100px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+                            <div class="flex items-center gap-3 md:gap-5">
+                                <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#a1325b]/10 flex items-center justify-center border border-[#a1325b]/20 shadow-md">
+                                    <span class="material-symbols-outlined text-[#a1325b] text-xl md:text-3xl">account_balance_wallet</span>
                                 </div>
-                                <span class="text-xl md:text-3xl font-extrabold tracking-tighter text-on-surface/90">GOLD<span class="text-[#a1325b]">VAULT</span></span>
+                                <span class="text-lg md:text-2xl font-extrabold tracking-tighter text-on-surface/90">GOLD<span class="text-[#a1325b]">VAULT</span></span>
                             </div>
                         </div>
                         <!-- EtherNet -->
-                        <div class="min-w-[250px] md:min-w-[340px] h-[120px] md:h-[200px] flex items-center justify-center p-4 md:p-12 group flex-shrink-0">
-                            <div class="flex items-center gap-4 md:gap-6">
-                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#a855f7]/10 flex items-center justify-center border border-[#a855f7]/20 shadow-lg shadow-[#a855f7]/5">
-                                    <span class="material-symbols-outlined text-[#a855f7] text-2xl md:text-4xl">hub</span>
+                        <div class="min-w-[220px] md:min-w-[300px] h-[100px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+                            <div class="flex items-center gap-3 md:gap-5">
+                                <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#a855f7]/10 flex items-center justify-center border border-[#a855f7]/20 shadow-md">
+                                    <span class="material-symbols-outlined text-[#a855f7] text-xl md:text-3xl">hub</span>
                                 </div>
-                                <span class="text-xl md:text-3xl font-extrabold tracking-tighter text-on-surface/90">ETHER<span class="text-[#a855f7]">NET</span></span>
+                                <span class="text-lg md:text-2xl font-extrabold tracking-tighter text-on-surface/90">ETHER<span class="text-[#a855f7]">NET</span></span>
                             </div>
                         </div>
                         <!-- PulseCore -->
-                        <div class="min-w-[250px] md:min-w-[340px] h-[120px] md:h-[200px] flex items-center justify-center p-4 md:p-12 group flex-shrink-0">
-                            <div class="flex items-center gap-4 md:gap-6">
-                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-accent-pink/10 flex items-center justify-center border border-accent-pink/20 shadow-lg shadow-accent-pink/5">
-                                    <span class="material-symbols-outlined text-accent-pink text-2xl md:text-4xl">monitoring</span>
+                        <div class="min-w-[220px] md:min-w-[300px] h-[100px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+                            <div class="flex items-center gap-3 md:gap-5">
+                                <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-accent-pink/10 flex items-center justify-center border border-accent-pink/20 shadow-md">
+                                    <span class="material-symbols-outlined text-accent-pink text-xl md:text-3xl">monitoring</span>
                                 </div>
-                                <span class="text-xl md:text-3xl font-extrabold tracking-tighter text-on-surface/90">PULSE<span class="text-accent-pink">CORE</span></span>
+                                <span class="text-lg md:text-2xl font-extrabold tracking-tighter text-on-surface/90">PULSE<span class="text-accent-pink">CORE</span></span>
                             </div>
                         </div>
                         <!-- SafeGuard -->
-                        <div class="min-w-[250px] md:min-w-[340px] h-[120px] md:h-[200px] flex items-center justify-center p-4 md:p-12 group flex-shrink-0">
-                            <div class="flex items-center gap-4 md:gap-6">
-                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#4ade80]/10 flex items-center justify-center border border-[#4ade80]/20 shadow-lg shadow-[#4ade80]/5">
-                                    <span class="material-symbols-outlined text-[#4ade80] text-2xl md:text-4xl">shield_with_heart</span>
+                        <div class="min-w-[220px] md:min-w-[300px] h-[100px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+                            <div class="flex items-center gap-3 md:gap-5">
+                                <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#4ade80]/10 flex items-center justify-center border border-[#4ade80]/20 shadow-md">
+                                    <span class="material-symbols-outlined text-[#4ade80] text-xl md:text-3xl">shield_with_heart</span>
                                 </div>
-                                <span class="text-xl md:text-3xl font-extrabold tracking-tighter text-on-surface/90">SAFE<span class="text-[#4ade80]">GUARD</span></span>
+                                <span class="text-lg md:text-2xl font-extrabold tracking-tighter text-on-surface/90">SAFE<span class="text-[#4ade80]">GUARD</span></span>
                             </div>
                         </div>
                         <!-- Duplicates for seamless loop -->
-                        <div class="min-w-[250px] md:min-w-[340px] h-[120px] md:h-[200px] flex items-center justify-center p-4 md:p-12 group flex-shrink-0">
-                            <div class="flex items-center gap-4 md:gap-6">
-                                <div class="w-12 h-12 md:w-16 md:h-16 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20">
-                                    <span class="material-symbols-outlined text-[#f2a154] text-2xl md:text-4xl">currency_bitcoin</span>
+                        <div class="min-w-[220px] md:min-w-[300px] h-[100px] md:h-[160px] flex items-center justify-center p-4 md:p-8 group flex-shrink-0">
+                            <div class="flex items-center gap-3 md:gap-5">
+                                <div class="w-10 h-10 md:w-14 md:h-14 rounded-full bg-[#f2a154]/10 flex items-center justify-center border border-[#f2a154]/20">
+                                    <span class="material-symbols-outlined text-[#f2a154] text-xl md:text-3xl">currency_bitcoin</span>
                                 </div>
-                                <span class="text-xl md:text-3xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
+                                <span class="text-lg md:text-2xl font-extrabold tracking-tighter text-on-surface/90">FINANCE<span class="text-[#f2a154]">FLOW</span></span>
                             </div>
                         </div>
                     </div>
@@ -393,16 +390,16 @@
         <!-- CTA Section -->
         <section class="py-16 md:py-24 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative overflow-hidden">
             <div class="max-w-4xl mx-auto mx-4 sm:mx-6 md:mx-8 lg:mx-margin-desktop">
-                <div class="relative overflow-hidden rounded-2xl md:rounded-[2rem] border border-white/50 shadow-xl p-8 md:p-16 lg:p-24 bg-white">
+                <div class="relative overflow-hidden rounded-xl md:rounded-2xl border border-white/50 shadow-xl p-6 md:p-12 lg:p-16 bg-white">
                     <div class="absolute inset-0 opacity-40" style="background: radial-gradient(circle at 70% 20%, rgb(255, 217, 225) 0%, transparent 50%), radial-gradient(circle at 30% 80%, rgb(255, 217, 225) 0%, transparent 50%);"></div>
                     <div class="text-center relative z-10">
-                        <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-on-surface mb-4 md:mb-6">Discover How EGG Finance Can Help Your Company</h2>
-                        <p class="text-on-surface-variant mb-8 md:mb-10 max-w-2xl mx-auto text-base md:text-lg">Join the world's most innovative financial institutions. Experience the future of relationship management today.</p>
-                        <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 items-center mt-6 md:mt-10">
-                            <button class="w-full sm:w-auto bg-primary text-on-primary px-8 md:px-12 py-3 md:py-4 font-bold primary-btn-lift min-w-[200px] md:min-w-[240px] rounded-xl md:rounded-2xl shadow-lg shadow-primary/25 text-base md:text-lg">Request a Demo</button>
-                            <button class="w-full sm:w-auto bg-white text-on-surface px-8 md:px-12 py-3 md:py-4 font-bold shadow-sm hover:bg-surface transition-all border border-primary/10 min-w-[200px] md:min-w-[240px] rounded-xl md:rounded-2xl text-base md:text-lg">Contact Our Experts</button>
+                        <h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold text-on-surface mb-4 md:mb-6">Discover How EGG Finance Can Help Your Company</h2>
+                        <p class="text-on-surface-variant mb-6 md:mb-8 max-w-2xl mx-auto text-sm md:text-base">Join the world's most innovative financial institutions. Experience the future of relationship management today.</p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4 items-center mt-6">
+                            <button class="w-full sm:w-auto bg-primary text-on-primary px-6 md:px-10 py-3 md:py-3.5 font-bold primary-btn-lift min-w-[180px] md:min-w-[220px] rounded-xl shadow-lg shadow-primary/25 text-sm md:text-base">Request a Demo</button>
+                            <button class="w-full sm:w-auto bg-white text-on-surface px-6 md:px-10 py-3 md:py-3.5 font-bold shadow-sm hover:bg-surface transition-all border border-primary/10 min-w-[180px] md:min-w-[220px] rounded-xl text-sm md:text-base">Contact Our Experts</button>
                         </div>
-                        <div class="flex flex-wrap justify-center gap-6 md:gap-8 mt-8 md:mt-12 opacity-60">
+                        <div class="flex flex-wrap justify-center gap-4 md:gap-6 mt-8 opacity-60">
                             <div class="flex items-center gap-2">
                                 <span class="material-symbols-outlined text-primary text-sm">check_circle</span>
                                 <span class="text-[10px] font-bold uppercase tracking-widest">No Hidden Fees</span>
@@ -424,21 +421,21 @@
         <!-- Stats Section -->
         <section class="py-12 md:py-20 px-4 sm:px-6 md:px-8 lg:px-margin-desktop">
             <div class="max-w-7xl mx-auto">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    <div class="p-6 md:p-10 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-2xl md:rounded-[2rem]">
-                        <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">17+</div>
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                    <div class="p-5 md:p-8 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-xl md:rounded-2xl">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1.5">17+</div>
                         <div class="text-[10px] md:text-[11px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Years Expertise</div>
                     </div>
-                    <div class="p-6 md:p-10 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-2xl md:rounded-[2rem]">
-                        <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">50+</div>
-                        <div class="text-[10px] md:text-[11px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Global SaaS Deployments</div>
+                    <div class="p-5 md:p-8 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-xl md:rounded-2xl">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1.5">50+</div>
+                        <div class="text-[10px] md:text-[11px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Global Deployments</div>
                     </div>
-                    <div class="p-6 md:p-10 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-2xl md:rounded-[2rem]">
-                        <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">70+</div>
+                    <div class="p-5 md:p-8 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-xl md:rounded-2xl">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1.5">70+</div>
                         <div class="text-[10px] md:text-[11px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">Specialized Staff</div>
                     </div>
-                    <div class="p-6 md:p-10 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-2xl md:rounded-[2rem]">
-                        <div class="text-3xl md:text-4xl font-extrabold text-primary mb-2">20+</div>
+                    <div class="p-5 md:p-8 bg-white border border-primary/5 shadow-sm hover:shadow-md transition-all duration-500 flex flex-col items-center text-center rounded-xl md:rounded-2xl">
+                        <div class="text-2xl md:text-3xl font-extrabold text-primary mb-1.5">20+</div>
                         <div class="text-[10px] md:text-[11px] font-extrabold text-secondary/60 uppercase tracking-[0.2em]">API Integrations</div>
                     </div>
                 </div>
@@ -447,49 +444,49 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full pt-16 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white border-t border-primary/5 relative z-10 overflow-hidden">
-        <div class="absolute bottom-0 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-primary/[0.03] blur-[120px] rounded-full -mr-20 md:-mr-300 -mb-20 md:-mb-300"></div>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-24">
-            <div class="md:col-span-5 space-y-6 md:space-y-10">
+    <footer class="w-full pt-16 md:pt-24 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white border-t border-primary/5 relative z-10 overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-[250px] md:w-[500px] h-[250px] md:h-[500px] bg-primary/[0.03] blur-[120px] rounded-full -mr-20 md:-mr-300 -mb-20 md:-mb-300"></div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-20">
+            <div class="md:col-span-5 space-y-6 md:space-y-8">
                 <div class="flex items-center gap-2">
-                    <span class="font-headline-md text-2xl md:text-4xl font-extrabold text-primary tracking-tighter">EGG Finance</span>
+                    <a href="index.html" class="font-headline-md text-2xl md:text-3xl font-extrabold text-primary tracking-tighter hover:opacity-80 transition-opacity">EGG Finance</a>
                 </div>
                 <p class="text-secondary leading-relaxed font-medium opacity-80 max-w-sm text-sm md:text-base">Founded in 2008, EGG Finance specializes in CRM, Marketing Automation, and Data Analytics for the global financial sector.</p>
-                <div class="flex gap-6 md:gap-8 pt-2 md:pt-4">
+                <div class="flex gap-6 pt-2">
                     <a class="text-on-surface-variant hover:text-primary transition-all" href="#"><svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg></a>
                     <a class="text-on-surface-variant hover:text-primary transition-all" href="#"><svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg></a>
                     <a class="text-on-surface-variant hover:text-primary transition-all" href="#"><svg class="w-5 h-5 md:w-6 md:h-6 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg></a>
                 </div>
             </div>
-            <div class="md:col-span-4 space-y-6 md:space-y-10 md:pl-12">
-                <h4 class="text-on-surface font-extrabold text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-primary">Connect</h4>
-                <ul class="space-y-6 md:space-y-8">
-                    <li class="flex items-center gap-4 md:gap-6 group cursor-pointer">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary/10 transition-all duration-300">
-                            <span class="material-symbols-outlined text-[20px] md:text-[24px]">mail</span>
+            <div class="md:col-span-4 space-y-6 md:space-y-8 md:pl-12">
+                <h4 class="text-on-surface font-extrabold text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-primary">Connect</h4>
+                <ul class="space-y-5 md:space-y-6">
+                    <li class="flex items-center gap-4 group cursor-pointer">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary/10 transition-all duration-300">
+                            <span class="material-symbols-outlined text-[20px] md:text-[22px]">mail</span>
                         </div>
-                        <span class="text-secondary font-bold text-base md:text-lg group-hover:text-primary transition-colors">hello@eggfinance.com</span>
+                        <span class="text-secondary font-bold text-sm md:text-base group-hover:text-primary transition-colors">hello@eggfinance.com</span>
                     </li>
-                    <li class="flex items-center gap-4 md:gap-6 group cursor-pointer">
-                        <div class="w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary/10 transition-all duration-300">
-                            <span class="material-symbols-outlined text-[20px] md:text-[24px]">phone</span>
+                    <li class="flex items-center gap-4 group cursor-pointer">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-primary/5 flex items-center justify-center border border-primary/10 group-hover:bg-primary/10 transition-all duration-300">
+                            <span class="material-symbols-outlined text-[20px] md:text-[22px]">phone</span>
                         </div>
-                        <span class="text-secondary font-bold text-base md:text-lg group-hover:text-primary transition-colors">+ 374 12 345678</span>
+                        <span class="text-secondary font-bold text-sm md:text-base group-hover:text-primary transition-colors">+ 374 12 345678</span>
                     </li>
                 </ul>
             </div>
-            <div class="md:col-span-3 space-y-6 md:space-y-10">
-                <h4 class="text-on-surface font-extrabold text-[10px] md:text-[12px] uppercase tracking-[0.3em] text-primary">Resources</h4>
-                <ul class="space-y-4 md:space-y-6">
-                    <li><a class="text-secondary hover:text-primary transition-colors font-bold text-sm md:text-lg" href="#">Privacy Policy</a></li>
-                    <li><a class="text-secondary hover:text-primary transition-colors font-bold text-sm md:text-lg" href="#">Security Standards</a></li>
-                    <li><a class="text-secondary hover:text-primary transition-colors font-bold text-sm md:text-lg" href="#">Terms &amp; Conditions</a></li>
+            <div class="md:col-span-3 space-y-6 md:space-y-8">
+                <h4 class="text-on-surface font-extrabold text-[10px] md:text-[11px] uppercase tracking-[0.3em] text-primary">Resources</h4>
+                <ul class="space-y-4 md:space-y-5">
+                    <li><a class="text-secondary hover:text-primary transition-colors font-bold text-sm md:text-base" href="#">Privacy Policy</a></li>
+                    <li><a class="text-secondary hover:text-primary transition-colors font-bold text-sm md:text-base" href="#">Security Standards</a></li>
+                    <li><a class="text-secondary hover:text-primary transition-colors font-bold text-sm md:text-base" href="#">Terms &amp; Conditions</a></li>
                 </ul>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-margin-desktop border-t border-black/5 pt-8 md:pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-margin-desktop border-t border-black/5 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <p class="text-[11px] md:text-[12px] text-secondary text-center md:text-left">© 2024 EGG Finance. All rights reserved.</p>
-            <div class="flex flex-wrap justify-center gap-6 md:gap-8">
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
                 <a class="text-[11px] md:text-[12px] text-outline hover:text-primary transition-colors" href="#">Privacy Policy</a>
                 <a class="text-[11px] md:text-[12px] text-outline hover:text-primary transition-colors" href="#">Terms of Service</a>
                 <a class="text-[11px] md:text-[12px] text-outline hover:text-primary transition-colors" href="#">Security</a>
