@@ -688,49 +688,73 @@ void main() {
         </div>
     </section>
 
-    <footer class="w-full pt-16 md:pt-32 pb-10 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-margin-desktop bg-white border-t border-primary/5 relative z-10 overflow-hidden">
-        <div class="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-primary/5 blur-[100px] rounded-full -mr-20 md:-mr-200 -mb-20 md:-mb-200"></div>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-16 md:mb-24">
+    <!-- Dark Footer -->
+<footer class="w-full bg-[#2a2a2a] text-white pt-16 md:pt-24 pb-10 md:pb-12 px-4 sm:px-6 md:px-8 lg:px-margin-desktop relative z-10 overflow-hidden">
+    <div class="absolute bottom-0 right-0 w-[300px] md:w-[500px] h-[300px] md:h-[500px] bg-accent-pink/5 blur-[120px] rounded-full -mr-20 md:-mr-200 -mb-20 md:-mb-200"></div>
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-16 mb-12 md:mb-16">
             <div class="md:col-span-5 space-y-6 md:space-y-8">
-                <span class="font-headline-md text-2xl font-extrabold text-primary tracking-tighter">EGG Finance</span>
-                <p class="text-secondary text-sm leading-relaxed font-medium opacity-70 max-w-xs">
-                    Founded in 2008, EGG Finance specializes in CRM and Data Analytics for the global financial sector.
+                <a href="index.html" class="inline-block text-2xl md:text-3xl font-extrabold text-accent-pink tracking-tighter hover:opacity-80 transition-opacity">EGG finance</a>
+                <p class="text-sm md:text-base text-white/70 leading-relaxed max-w-md">
+                    EGG finance is a technology company founded in 2008 specializing in CRM, Marketing Automation, Data Analytics, and cloud-based AI for the financial sector.
                 </p>
-                <div class="flex gap-6 pt-2">
-                    <a class="text-secondary hover:text-primary transition-all group" href="#">
-                        <svg class="w-6 h-6 fill-current" viewbox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
+                <div class="flex gap-3 pt-2">
+                    <!-- Facebook -->
+                    <a href="#" aria-label="Facebook" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"></path></svg>
                     </a>
-                    <a class="text-secondary hover:text-primary transition-all group" href="#">
-                        <svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                    <!-- X (Twitter) -->
+                    <a href="#" aria-label="X" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
+                    </a>
+                    <!-- LinkedIn -->
+                    <a href="#" aria-label="LinkedIn" class="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center hover:bg-accent-pink hover:border-accent-pink transition-all duration-300 group">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 fill-current text-white/80 group-hover:text-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"></path></svg>
                     </a>
                 </div>
             </div>
             <div class="md:col-span-4 space-y-6 md:space-y-8 md:pl-12">
-                <h4 class="text-primary font-extrabold text-[10px] uppercase tracking-[0.3em]">Connect</h4>
-                <ul class="space-y-6">
+                <h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Contacts</h4>
+                <ul class="space-y-5">
                     <li class="flex items-center gap-4 group cursor-pointer">
-                        <div class="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center border border-primary/5 group-hover:bg-primary group-hover:text-white transition-all">
-                            <span class="material-symbols-outlined text-[20px]">mail</span>
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+                            <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">mail</span>
                         </div>
-                        <span class="text-secondary font-bold text-base hover:text-primary transition-colors">hello@eggfinance.com</span>
+                        <a href="mailto:hello@eggfinance.com" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">hello@eggfinance.com</a>
                     </li>
                     <li class="flex items-center gap-4 group cursor-pointer">
-                        <div class="w-10 h-10 rounded-xl bg-primary/5 flex items-center justify-center border border-primary/5 group-hover:bg-primary group-hover:text-white transition-all">
-                            <span class="material-symbols-outlined text-[20px]">phone</span>
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+                            <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">phone</span>
                         </div>
-                        <span class="text-secondary font-bold text-base hover:text-primary transition-colors">+ 374 12 345678</span>
+                        <a href="tel:+390212345678" class="text-sm md:text-base text-white/70 font-semibold hover:text-accent-pink transition-colors">+39 02 1234 5678</a>
+                    </li>
+                    <li class="flex items-center gap-4 group cursor-pointer">
+                        <div class="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent-pink group-hover:border-accent-pink transition-all duration-300">
+                            <span class="material-symbols-outlined text-[20px] text-white/80 group-hover:text-white">location_on</span>
+                        </div>
+                        <span class="text-sm md:text-base text-white/70 font-semibold">Via Monte Napoleone, 8<br/>20121 Milano, Italy</span>
                     </li>
                 </ul>
             </div>
             <div class="md:col-span-3 space-y-6 md:space-y-8">
-                <h4 class="text-primary font-extrabold text-[10px] uppercase tracking-[0.3em]">Resources</h4>
+                <h4 class="text-accent-pink font-extrabold text-[10px] uppercase tracking-[0.3em]">Resources</h4>
                 <ul class="space-y-4">
-                    <li class=""><a class="text-secondary hover:text-primary transition-colors font-bold text-base" href="#">Privacy Policy</a></li>
-                    <li class=""><a class="text-secondary hover:text-primary transition-colors font-bold text-base" href="#">Security</a></li>
+                    <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Privacy Policy</a></li>
+                    <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Terms and Conditions</a></li>
+                    <li><a class="text-white/70 hover:text-accent-pink transition-colors font-bold text-sm md:text-base" href="#">Security</a></li>
                 </ul>
             </div>
         </div>
-    </footer>
+        
+        <div class="border-t border-white/10 pt-6 md:pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs md:text-sm text-white/50">© 2026 EGG finance. All rights reserved.</p>
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+                <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Privacy Policy</a>
+                <a class="text-xs md:text-sm text-white/50 hover:text-accent-pink transition-colors" href="#">Terms and Conditions</a>
+            </div>
+        </div>
+    </div>
+</footer>
 
     <script>
         // Mobile Menu Toggle
